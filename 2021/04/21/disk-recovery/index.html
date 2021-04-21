@@ -20,19 +20,28 @@
     var CONFIG = {"hostname":"haiqingd.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="unity3D学习参考视频 BV18x411X7ds UnityBasics - 15-19 - Basic Coding笔记添加组件 选择到对应的 3d Object - Add Component - 输入脚本名 - new script - Create and Add  HelloWorld一个基础的程序 123456789101112131415161718192021222324pub">
+  <meta name="description" content="一、起因需要帮同学在他的 ssd 中装 Windows10 操作系统，在装系统的过程中误将自己的数据盘当成同学待安装系统的 ssd。然后点了删除，就是如下图所示的那一步  若是只进行到了这一步，千万不要慌。只需要选择退出 Windows 安装，重新启动（原系统没问题的情况下），原来的非系统盘是没有被删除掉的。 但是如果之后想要再次安装系统的话，【你想将windows安装在哪里】的这个选项卡中，原来">
 <meta property="og:type" content="article">
-<meta property="og:title" content="unity3D学习 - 03 - 编码、额外的物理知识">
-<meta property="og:url" content="https://haiqingd.github.io/2021/03/21/unity-notes-03/index.html">
+<meta property="og:title" content="误删除硬盘（未格式化）后的重建分区表完成硬盘恢复">
+<meta property="og:url" content="https://haiqingd.github.io/2021/04/21/disk-recovery/index.html">
 <meta property="og:site_name" content="Haiqingd&#39;s Blog">
-<meta property="og:description" content="unity3D学习参考视频 BV18x411X7ds UnityBasics - 15-19 - Basic Coding笔记添加组件 选择到对应的 3d Object - Add Component - 输入脚本名 - new script - Create and Add  HelloWorld一个基础的程序 123456789101112131415161718192021222324pub">
+<meta property="og:description" content="一、起因需要帮同学在他的 ssd 中装 Windows10 操作系统，在装系统的过程中误将自己的数据盘当成同学待安装系统的 ssd。然后点了删除，就是如下图所示的那一步  若是只进行到了这一步，千万不要慌。只需要选择退出 Windows 安装，重新启动（原系统没问题的情况下），原来的非系统盘是没有被删除掉的。 但是如果之后想要再次安装系统的话，【你想将windows安装在哪里】的这个选项卡中，原来">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-21T05:49:57.000Z">
-<meta property="article:modified_time" content="2021-03-21T06:35:51.569Z">
+<meta property="og:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/2021-04-21-15-56-27.png">
+<meta property="og:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/2021-04-21-16-06-08.png">
+<meta property="og:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/2021-04-21-16-18-16.png">
+<meta property="og:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/2021-04-21-16-42-44.png">
+<meta property="og:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/2021-04-21-16-46-57.png">
+<meta property="og:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/2021-04-21-16-49-28.png">
+<meta property="og:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/2021-04-21-16-50-24.png">
+<meta property="og:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/!%5B%5D(2021-04-21-16-53-02.png).png">
+<meta property="article:published_time" content="2021-04-21T03:17:48.000Z">
+<meta property="article:modified_time" content="2021-04-21T08:55:17.693Z">
 <meta property="article:author" content="Haiqingd">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/2021-04-21-15-56-27.png">
 
-<link rel="canonical" href="https://haiqingd.github.io/2021/03/21/unity-notes-03/">
+<link rel="canonical" href="https://haiqingd.github.io/2021/04/21/disk-recovery/">
 
 
 <script id="page-configurations">
@@ -45,7 +54,7 @@
   };
 </script>
 
-  <title>unity3D学习 - 03 - 编码、额外的物理知识 | Haiqingd's Blog</title>
+  <title>误删除硬盘（未格式化）后的重建分区表完成硬盘恢复 | Haiqingd's Blog</title>
   
 
 
@@ -150,7 +159,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://haiqingd.github.io/2021/03/21/unity-notes-03/">
+    <link itemprop="mainEntityOfPage" href="https://haiqingd.github.io/2021/04/21/disk-recovery/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +172,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          unity3D学习 - 03 - 编码、额外的物理知识
+          误删除硬盘（未格式化）后的重建分区表完成硬盘恢复
         </h1>
 
         <div class="post-meta">
@@ -174,7 +183,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-03-21 13:49:57 / 修改时间：14:35:51" itemprop="dateCreated datePublished" datetime="2021-03-21T13:49:57+08:00">2021-03-21</time>
+              <time title="创建时间：2021-04-21 11:17:48 / 修改时间：16:55:17" itemprop="dateCreated datePublished" datetime="2021-04-21T11:17:48+08:00">2021-04-21</time>
             </span>
 
           
@@ -188,13 +197,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="unity3D学习"><a href="#unity3D学习" class="headerlink" title="unity3D学习"></a>unity3D学习</h1><p>参考视频 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18x411X7ds"><em>BV18x411X7ds</em></a></p>
-<h2 id="UnityBasics-15-19-Basic-Coding"><a href="#UnityBasics-15-19-Basic-Coding" class="headerlink" title="UnityBasics - 15-19 - Basic Coding"></a>UnityBasics - 15-19 - Basic Coding</h2><h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><h4 id="添加组件"><a href="#添加组件" class="headerlink" title="添加组件"></a>添加组件</h4><ul>
-<li>选择到对应的 3d Object - Add Component - 输入脚本名 - new script - Create and Add</li>
+        <h1 id="一、起因"><a href="#一、起因" class="headerlink" title="一、起因"></a>一、起因</h1><p>需要帮同学在他的 ssd 中装 Windows10 操作系统，在装系统的过程中误将自己的数据盘当成同学待安装系统的 ssd。然后点了删除，就是如下图所示的那一步</p>
+<p><img src="/2021/04/21/disk-recovery/2021-04-21-15-56-27.png"></p>
+<p>若是只进行到了这一步，千万不要慌。只需要选择退出 Windows 安装，重新启动（原系统没问题的情况下），原来的非系统盘是没有被删除掉的。</p>
+<p>但是如果之后想要再次安装系统的话，【你想将windows安装在哪里】的这个选项卡中，原来误删掉的驱动器依然会显示是删除掉的（未分配的空间）。</p>
+<p>如果想要继续安装操作系统，务必不要嫌麻烦，先拔掉之前选择了删除的硬盘，之后再重新进安装程序。</p>
+<h1 id="二、表现：【位置不可用】"><a href="#二、表现：【位置不可用】" class="headerlink" title="二、表现：【位置不可用】"></a>二、表现：【位置不可用】</h1><ol>
+<li><p> 因为我的桌面设置过，是在 D 盘中的，所以一打开桌面就会显示【位置不可用的弹窗】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-06-08.png"></p>
+</li>
+<li><p>打开我的电脑，发现只有一个 C 盘系统盘</p>
+</li>
+<li><p>按下<kbd>windows</kbd>键，输入 disk 回车，能找到驱动器 1，但是空间全部为未分配</p>
+</li>
+</ol>
+<p><img src="/2021/04/21/disk-recovery/2021-04-21-16-18-16.png"></p>
+<h1 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h1><ul>
+<li> <strong>不要尝试重新分配空间（分区）。</strong>   </li>
 </ul>
-<h4 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h4><p>一个基础的程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class IronBars : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Start is called before the first frame update</span><br><span class="line">    &#x2F;&#x2F; 1.Variables 变量定义区</span><br><span class="line">    public int x;</span><br><span class="line">    public float y;</span><br><span class="line">    [Range(1,15)] &#x2F;&#x2F; 在 unity 中的滑动范围</span><br><span class="line">    public float z;</span><br><span class="line"></span><br><span class="line">    public string name;</span><br><span class="line">    </span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 2.一次性程序码区</span><br><span class="line">        &#x2F;&#x2F; print(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Update is called once per frame</span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 3.重复式程序码区 60次&#x2F;秒</span><br><span class="line">        print(z);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h3><h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3>
+<blockquote>
+<p>重新分区后是看不到原来的数据的，因为会被格式化；而且重新分区后系统就能找到原来的 D 盘磁盘，若此时进行了一些磁盘的读写操作，磁盘就无法完全恢复了。</p>
+</blockquote>
+<ul>
+<li> <strong>不需要进行数据恢复</strong></li>
+</ul>
+<blockquote>
+<p>若没有进行格式化，到目前为止的操作只是 <strong>删除了分区表</strong> ，需要做的仅仅是 <strong>重新创建分区表</strong>，而 <strong>不是进行整个磁盘的数据恢复！！！</strong></p>
+</blockquote>
+<p>步骤：</p>
+<ol>
+<li>下载能够建立分区表的磁盘管理工具。我使用的是 <a target="_blank" rel="noopener" href="https://www.diskgenius.cn/download.php">DiskGeniues</a>。缺点是 DiskGeniues 的免费版本只可以在软件中创建分区表，不能保存分区表到磁盘中。需要保存分区表需要购买【标准版】以上的版本或者使用其他手段。<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-42-44.png"></li>
+<li>选到丢失的磁盘，选择【搜索已丢失分区（重建分区表）】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-46-57.png"></li>
+<li>重建后检查一下文件没有什么问题，就可以选择【保存分区表】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-49-28.png"></li>
+<li>分区表格式，这个没有研究过，我选择的是【GUID】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-50-24.png"></li>
+<li>点击确定后，硬盘就可以访问了。此时可能会遇到盘符和原来不一致的问题。若没有这一问题，就大功告成了。</li>
+<li>若有盘符问题，打开磁盘管理（开始菜单搜索disk）,选择更改驱动器和路径，分配到原来的位置。<br><img src="/2021/04/21/disk-recovery/!%5B%5D(2021-04-21-16-53-02.png).png"></li>
+<li>此时已经大功告成了，这样操作得到的数据是完全和之前一样的，不会有任何的损坏，也不需要花时间拷贝或是数据恢复，如果有一些应用或服务有问题，尝试重新启动一下计算机。</li>
+</ol>
+
     </div>
 
     
@@ -209,13 +248,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/03/14/unity-notes-02/" rel="prev" title="unity3D学习 - 02 - 原型、材料、天空、地板、玩家、墙">
-      <i class="fa fa-chevron-left"></i> unity3D学习 - 02 - 原型、材料、天空、地板、玩家、墙
+    <a href="/2021/04/11/fn-exchange/" rel="prev" title="HP 暗影精灵系列笔记本 功能键 Fn 反转">
+      <i class="fa fa-chevron-left"></i> HP 暗影精灵系列笔记本 功能键 Fn 反转
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/04/05/SlayTheSpire/" rel="next" title="SlayTheSpire">
-      SlayTheSpire <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -274,7 +310,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#unity3D%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">unity3D学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UnityBasics-15-19-Basic-Coding"><span class="nav-number">1.1.</span> <span class="nav-text">UnityBasics - 15-19 - Basic Coding</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%94%E8%AE%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E7%BB%84%E4%BB%B6"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">添加组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HelloWorld"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">HelloWorld</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%96%91%E9%97%AE"><span class="nav-number">1.1.2.</span> <span class="nav-text">疑问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%84%E6%96%99"><span class="nav-number">1.1.3.</span> <span class="nav-text">资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">1.1.4.</span> <span class="nav-text">补充</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%B5%B7%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">一、起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%A1%A8%E7%8E%B0%EF%BC%9A%E3%80%90%E4%BD%8D%E7%BD%AE%E4%B8%8D%E5%8F%AF%E7%94%A8%E3%80%91"><span class="nav-number">2.</span> <span class="nav-text">二、表现：【位置不可用】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">三、解决方案</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
