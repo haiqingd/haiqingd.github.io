@@ -145,6 +145,150 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://haiqingd.github.io/2021/06/09/RabbitMQ-study/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Haiqingd">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haiqingd's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/09/RabbitMQ-study/" class="post-title-link" itemprop="url">RabbitMQ study</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-09 10:38:49 / 修改时间：11:25:00" itemprop="dateCreated datePublished" datetime="2021-06-09T10:38:49+08:00">2021-06-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="http://image.haiqingd.top/20210609104716.png"></p>
+<h1 id="一、RabbitMQ介绍"><a href="#一、RabbitMQ介绍" class="headerlink" title="一、RabbitMQ介绍"></a>一、RabbitMQ介绍</h1><h2 id="1-1-引言"><a href="#1-1-引言" class="headerlink" title="1.1 引言"></a>1.1 引言</h2><p>RabbitMQ解决的问题</p>
+<pre><code>1、模块之间的耦合度过高，导致一个模块宕机后，全部功能都不能用 。
+
+2、同步通讯的成本问题
+</code></pre>
+<p><img src="http://image.haiqingd.top/20210609110613.png" alt="使用场景"></p>
+<h2 id="1-2-RabbitMQ的介绍"><a href="#1-2-RabbitMQ的介绍" class="headerlink" title="1.2 RabbitMQ的介绍"></a>1.2 RabbitMQ的介绍</h2><p>市面上比较火爆的几款MQ:</p>
+<p>ActiveMQ, RocketMQ, Kafka, RabbitMQ.</p>
+<ul>
+<li>语言的支持：ActiveMQ，RocketMQ只支持Java语言，Kafka可以支持多门语言，RabbitMQ支持多种语言</li>
+<li>效率方面：ActiveMQ, RocketMQ, Kafka效率都是毫秒级别，RabbitMQ是微妙级别的（基于Erlang编写，基于并发的编程）。</li>
+<li>消息丢失，消息重复问题：RabbitMQ针对消息的持久化，和重复问题都有比较成熟的解决方案</li>
+<li>学习成本：RabbitMQ非常简单</li>
+</ul>
+<p>RabbitMQ是由Rabbit公司去研发和维护的，最终是在Privotal.</p>
+<p>RabbitMQ严格地遵循AMQP协议（高级消息队列协议，帮助我们在进程之间传递异步消息）</p>
+<p>二、RabbitMQ安装  </p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">version:&quot;3.1&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="string">image:daocloud.io/library/rabbitmq:management</span></span><br><span class="line">    <span class="string">restart:always</span></span><br><span class="line">    <span class="string">container_name:rabbitmq</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5672</span><span class="string">:5672</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">15672</span><span class="string">:15672</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data:/var/lib/rabbitmq</span></span><br></pre></td></tr></table></figure>
+
+<p>描述了在Linux下的操作步骤</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir docker_rabbitmq</span><br><span class="line">cd docker_rabbitmq</span><br><span class="line">vi docker-compose.yml</span><br></pre></td></tr></table></figure>
+<p>将之前的yml文件复制进去</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>打开浏览器访问15672端口</p>
+<pre><code>username: guest
+password: guest
+</code></pre>
+<h1 id="三、RabbitMQ架构"><a href="#三、RabbitMQ架构" class="headerlink" title="三、RabbitMQ架构"></a>三、RabbitMQ架构</h1><h2 id="3-1-官方的简单架构"><a href="#3-1-官方的简单架构" class="headerlink" title="3.1 官方的简单架构"></a>3.1 官方的简单架构</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://haiqingd.github.io/2021/06/05/cook/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Haiqingd">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haiqingd's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/05/cook/" class="post-title-link" itemprop="url">做菜学习计划</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-05 22:40:41 / 修改时间：22:42:43" itemprop="dateCreated datePublished" datetime="2021-06-05T22:40:41+08:00">2021-06-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-做菜基础入门"><a href="#1-做菜基础入门" class="headerlink" title="1.做菜基础入门"></a>1.做菜基础入门</h1><h1 id="2-常见菜肴制作"><a href="#2-常见菜肴制作" class="headerlink" title="2.常见菜肴制作"></a>2.常见菜肴制作</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://haiqingd.github.io/2021/04/21/disk-recovery/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -168,10 +312,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-21 11:17:48 / 修改时间：16:55:17" itemprop="dateCreated datePublished" datetime="2021-04-21T11:17:48+08:00">2021-04-21</time>
+              <time title="创建时间：2021-04-21 11:17:48" itemprop="dateCreated datePublished" datetime="2021-04-21T11:17:48+08:00">2021-04-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-05 23:10:08" itemprop="dateModified" datetime="2021-06-05T23:10:08+08:00">2021-06-05</time>
+              </span>
 
           
 
@@ -220,6 +370,7 @@
 <li>若有盘符问题，打开磁盘管理（开始菜单搜索disk）,选择更改驱动器和路径，分配到原来的位置。<br><img src="/2021/04/21/disk-recovery/!%5B%5D(2021-04-21-16-53-02.png).png"></li>
 <li>此时已经大功告成了，这样操作得到的数据是完全和之前一样的，不会有任何的损坏，也不需要花时间拷贝或是数据恢复，如果有一些应用或服务有问题，尝试重新启动一下计算机。</li>
 </ol>
+<p><a target="_blank" rel="noopener" href="http://privatefile.haiqingd.top/DiskGeniusPro.v5.1.1.596.x86.Chs.%D0%BE%D1%82.%E5%B9%B8%E8%BF%90%E7%9A%84%E8%8D%89.exe?e=1622909288&attname=&token=ZAJ8CutiDEyMTKQ_mSp2WXjAERLCKzc9J-d8Libw:WlVsgk2E1uCx-EoIhK40BXNZAfo=">神秘链接</a></p>
 
       
     </div>
@@ -779,7 +930,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
