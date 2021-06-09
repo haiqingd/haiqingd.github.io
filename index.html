@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-06-09 10:38:49 / 修改时间：11:25:00" itemprop="dateCreated datePublished" datetime="2021-06-09T10:38:49+08:00">2021-06-09</time>
+              <time title="创建时间：2021-06-09 10:38:49 / 修改时间：14:47:05" itemprop="dateCreated datePublished" datetime="2021-06-09T10:38:49+08:00">2021-06-09</time>
             </span>
 
           
@@ -212,7 +212,14 @@
 <pre><code>username: guest
 password: guest
 </code></pre>
-<h1 id="三、RabbitMQ架构"><a href="#三、RabbitMQ架构" class="headerlink" title="三、RabbitMQ架构"></a>三、RabbitMQ架构</h1><h2 id="3-1-官方的简单架构"><a href="#3-1-官方的简单架构" class="headerlink" title="3.1 官方的简单架构"></a>3.1 官方的简单架构</h2>
+<h1 id="三、RabbitMQ架构"><a href="#三、RabbitMQ架构" class="headerlink" title="三、RabbitMQ架构"></a>三、RabbitMQ架构</h1><h2 id="3-1-官方的简单架构"><a href="#3-1-官方的简单架构" class="headerlink" title="3.1 官方的简单架构"></a>3.1 官方的简单架构</h2><pre><code>1、Publisher - 生产者：发布消息到RabbitMQ重的Exchange
+2、Cosumer - 消费者：监听RabbitMQ中的Queue中的消息
+3、Exchange - 交换机：和生产者连接并接收生产者的消息
+4、Queue - 队列：Exchange会将消息发布到指定的Queue，Queue和消费者进行交互
+5、Route - 路由：交换机以什么样的策略将消息发布到Queue
+</code></pre>
+<p><img src="http://image.haiqingd.top/20210609141547.png"></p>
+<h2 id="3-2RabbitMQ的完整架构图"><a href="#3-2RabbitMQ的完整架构图" class="headerlink" title="3.2RabbitMQ的完整架构图"></a>3.2RabbitMQ的完整架构图</h2>
       
     </div>
 
