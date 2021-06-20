@@ -176,7 +176,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-21 00:03:23" itemprop="dateModified" datetime="2021-06-21T00:03:23+08:00">2021-06-21</time>
+                <time title="修改时间：2021-06-21 00:25:52" itemprop="dateModified" datetime="2021-06-21T00:25:52+08:00">2021-06-21</time>
               </span>
 
           
@@ -227,7 +227,145 @@ Thu Dec 16 17:24:27 CST 2004
 <h1 id="ChoiceFormat"><a href="#ChoiceFormat" class="headerlink" title="ChoiceFormat"></a>ChoiceFormat</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><p>ChoiceFormat 允许将格式应用到某个范围的数。它通常用于在 MessageFormat 中处理复数。使用按升序排列的 double 列表指定 choice，列表中每一项都指定一个到下一项的半开区间：</p>
 <p>当且仅当 limit[j] &lt;= X &lt; limit[j+1] 时，X 匹配 j</p>
 <p>如果不匹配，则根据数 (X) 的是太小还是太大，选择使用第一个或最后一个索引。如果 limit 数组不按升序排列，则格式化的结果将不正确。ChoiceFormat 还接受 $ \infty $（等同于无穷大 (INF)）。</p>
-<h2 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h2><h1 id="DecimalFormat"><a href="#DecimalFormat" class="headerlink" title="DecimalFormat"></a>DecimalFormat</h1><h1 id="MessageFormat"><a href="#MessageFormat" class="headerlink" title="MessageFormat"></a>MessageFormat</h1>
+<h2 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h2><p>以下是一个显示格式化和解析的简单例子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span>[] limits = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;</span><br><span class="line">String[] dayOfWeekNames = &#123;<span class="string">&quot;Sun&quot;</span>,<span class="string">&quot;Mon&quot;</span>,<span class="string">&quot;Tue&quot;</span>,<span class="string">&quot;Wed&quot;</span>,<span class="string">&quot;Thur&quot;</span>,<span class="string">&quot;Fri&quot;</span>,<span class="string">&quot;Sat&quot;</span>&#125;;</span><br><span class="line">ChoiceFormat form = <span class="keyword">new</span> ChoiceFormat(limits, dayOfWeekNames);</span><br><span class="line">ParsePosition status = <span class="keyword">new</span> ParsePosition(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">double</span> i = <span class="number">0.0</span>; i &lt;= <span class="number">8.0</span>; ++i) &#123;</span><br><span class="line">    status.setIndex(<span class="number">0</span>);</span><br><span class="line">    System.out.println(i + <span class="string">&quot; -&gt; &quot;</span> + form.format(i) + <span class="string">&quot; -&gt; &quot;</span></span><br><span class="line">                            + form.parse(form.format(i),status));</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>以下是一个较复杂的带模式格式的例子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span>[] filelimits = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;;</span><br><span class="line">String[] filepart = &#123;<span class="string">&quot;are no files&quot;</span>,<span class="string">&quot;is one file&quot;</span>,<span class="string">&quot;are &#123;2&#125; files&quot;</span>&#125;;</span><br><span class="line">ChoiceFormat fileform = <span class="keyword">new</span> ChoiceFormat(filelimits, filepart);</span><br><span class="line">Format[] testFormats = &#123;fileform, <span class="keyword">null</span>, NumberFormat.getInstance()&#125;;</span><br><span class="line">MessageFormat pattform = <span class="keyword">new</span> MessageFormat(<span class="string">&quot;There &#123;0&#125; on &#123;1&#125;&quot;</span>);</span><br><span class="line">pattform.setFormats(testFormats);</span><br><span class="line">Object[] testArgs = &#123;<span class="keyword">null</span>, <span class="string">&quot;ADisk&quot;</span>, <span class="keyword">null</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i) &#123;</span><br><span class="line">    testArgs[<span class="number">0</span>] = <span class="keyword">new</span> Integer(i);</span><br><span class="line">    testArgs[<span class="number">2</span>] = testArgs[<span class="number">0</span>];</span><br><span class="line">    System.out.println(pattform.format(testArgs));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>为 ChoiceFormat 对象指定一个模式是相当直接的。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ChoiceFormat fmt = <span class="keyword">new</span> ChoiceFormat(</span><br><span class="line">    <span class="string">&quot;-1#is negative| 0#is zero or fraction | 1#is one |1.0&lt;is 1+ |2#is two |2&lt;is more than 2.&quot;</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;Formatter Pattern : &quot;</span> + fmt.toPattern());</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;Format with -INF : &quot;</span> + fmt.format(Double.NEGATIVE_INFINITY));</span><br><span class="line">System.out.println(<span class="string">&quot;Format with -1.0 : &quot;</span> + fmt.format(-<span class="number">1.0</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Format with 0 : &quot;</span> + fmt.format(<span class="number">0</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Format with 0.9 : &quot;</span> + fmt.format(<span class="number">0.9</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Format with 1.0 : &quot;</span> + fmt.format(<span class="number">1</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Format with 1.5 : &quot;</span> + fmt.format(<span class="number">1.5</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Format with 2 : &quot;</span> + fmt.format(<span class="number">2</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Format with 2.1 : &quot;</span> + fmt.format(<span class="number">2.1</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Format with NaN : &quot;</span> + fmt.format(Double.NaN));</span><br><span class="line">System.out.println(<span class="string">&quot;Format with +INF : &quot;</span> + fmt.format(Double.POSITIVE_INFINITY));</span><br></pre></td></tr></table></figure>
+<p>输出结果类似如下：</p>
+<pre><code>Format with -INF : is negative
+Format with -1.0 : is negative
+Format with 0 : is zero or fraction
+Format with 0.9 : is zero or fraction
+Format with 1.0 : is one
+Format with 1.5 : is 1+
+Format with 2 : is two
+Format with 2.1 : is more than 2.
+Format with NaN : is negative
+Format with +INF : is more than 2.
+</code></pre><h1 id="DecimalFormat"><a href="#DecimalFormat" class="headerlink" title="DecimalFormat"></a>DecimalFormat</h1><h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><p>DecimalFormat 是 NumberFormat 的一个具体子类，用于格式化十进制数字。该类设计有各种功能，使其能够解析和格式化任意语言环境中的数，包括对西方语言、阿拉伯语和印度语数字的支持。它还支持不同类型的数，包括整数 (123)、定点数 (123.4)、科学记数法表示的数 (1.23E4)、百分数 (12%) 和金额 ($123)。所有这些内容都可以本地化。</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><blockquote>
+<p>占位符的使用</p>
+</blockquote>
+<p>我们要实现格式化数据，需要使用到DecimalFormat的其中一个构造方法：</p>
+<p>public DecimalFormat(String pattern)<br>构造参数pattern就是用来格式化的：一个非本地化的模式字符串。<br>0和#都是常用的占位符，但是他们俩还有些区别。<br>下面我们举几个例子看看pattern的具体使用，以及0和#的区别。</p>
+<h3 id="0占位符的使用"><a href="#0占位符的使用" class="headerlink" title="0占位符的使用"></a>0占位符的使用</h3><blockquote>
+<p>占位符比实际数字多</p>
+</blockquote>
+<pre><code>new DecimalFormat(&quot;00.00&quot;).format(3.14567);//结果：03.15
+new DecimalFormat(&quot;0.000&quot;).format(3.14);//结果：3.140
+new DecimalFormat(&quot;00.000&quot;).format(3.14);//结果：03.140
+</code></pre><blockquote>
+<p>占位符比实际数字少</p>
+</blockquote>
+<pre><code>new DecimalFormat(&quot;00.00&quot;).format(13.14567);//结果：13.15
+new DecimalFormat(&quot;0.000&quot;).format(13.14567);//结果：13.146
+new DecimalFormat(&quot;0.00&quot;).format(13.14567);//结果：13.15
+</code></pre><blockquote>
+<p>总结</p>
+</blockquote>
+<p>使用0占位符的时候：</p>
+<ol>
+<li>比实际数字的位数多，不足的地方用0补上。</li>
+<li>比实际数字的位数少：整数部分不改动，小数部分，四舍五入（其实并不是四舍五入，而是默认的RoundingMode.HALF_EVEN方式，下面会讲到DecimalFormat的舍入方式）。</li>
+</ol>
+<h3 id="35-占位符的使用"><a href="#35-占位符的使用" class="headerlink" title="&#35;占位符的使用"></a>&#35;占位符的使用</h3><blockquote>
+<p>占位符比实际数字多</p>
+</blockquote>
+<pre><code>new DecimalFormat(&quot;##.##&quot;).format(3.14567);//结果：3.15
+new DecimalFormat(&quot;#.###&quot;).format(3.14);//结果：3.14
+new DecimalFormat(&quot;##.###&quot;).format(3.14);//结果：3.14
+</code></pre><blockquote>
+<p>占位符比实际数字少</p>
+</blockquote>
+<pre><code>new DecimalFormat(&quot;#.###&quot;).format(13.145678);//结果：13.146
+new DecimalFormat(&quot;##.##&quot;).format(13.14567);//结果：13.15
+new DecimalFormat(&quot;#.##&quot;).format(13.14567);//结果：13.15
+</code></pre><blockquote>
+<p>总结</p>
+</blockquote>
+<p>使用&#35;占位符的时候：</p>
+<ol>
+<li>比实际数字的位数多，不变。</li>
+<li>比实际数字的位数少：整数部分不改动，小数部分，四舍五入（其实并不是四舍五入，而是默认的RoundingMode.HALF_EVEN方式，下面会讲到DecimalFormat的舍入方式）。</li>
+</ol>
+<h3 id="占位符使用总结"><a href="#占位符使用总结" class="headerlink" title="占位符使用总结"></a>占位符使用总结</h3><p>通过上面的例子，可以看到0和#占位符的区别，在实际使用的时候，可以根据不同需来选择占位符。<br>比如：</p>
+<ol>
+<li>格式化数字，保留两位小数，不足的小数部分用0代替，这时候，我们就可以使用：”0.00”；</li>
+<li>格式化数字，只保留有效数字，最多保留两位小数，这时候，我们就可以使用：”#.##”。</li>
+</ol>
+<h2 id="DecimalFormat的格式化方式（舍入方式）"><a href="#DecimalFormat的格式化方式（舍入方式）" class="headerlink" title="DecimalFormat的格式化方式（舍入方式）"></a>DecimalFormat的格式化方式（舍入方式）</h2><p>在以上的几个例子，我们可以发现，当要格式化的数字超过占位符的时候，格式化的结果会进行四舍五入。这并不是按照四舍五入的方式舍入的，而是因为没有指定格式化的RoundingMode，而默认使用了RoundingMode.HALF_EVEN方式。<br>关于RoundingMode，这里就不做介绍了，可以参照另一篇笔记BigDecimal - 用于加、减、乘、除计算的工具类<br>，里面对RoundingMode进行了详细的介绍。</p>
+<blockquote>
+<p>使用方式</p>
+</blockquote>
+<p>下面举两个例子，指定舍入方式的格式化。</p>
+<pre><code>DecimalFormat format = new DecimalFormat(&quot;#.##&quot;);
+//指定舍入方式为：RoundingMode.DOWN，直接舍去格式化以外的部分
+format.setRoundingMode(RoundingMode.DOWN);
+String formatDown = format.format(13.14567);//结果：13.14
+//指定舍入方式为：RoundingMode.HALF_UP，四舍五入
+format.setRoundingMode(RoundingMode.HALF_UP);
+String formatHalfUp = format.format(13.14567);//结果：13.15
+</code></pre><blockquote>
+<p>总结</p>
+</blockquote>
+<p>关于DecimalFormat 的舍入方式，可以参考以上的例子，根据需求的不同，使用对应的RoundingMode。</p>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><p>在BigDecimal - 用于加、减、乘、除计算的工具类这篇笔记中，我们说过，要用String类型进行加、减、乘、除运算。所以，我们接受服务器返回的数据都是用String类型接收的，这时候我们用DecimalFormat 如何格式化String类型的数据呢？</p>
+<p>下面是个例子来实现String类型的格式化，将String类型的数据，格式化为只保留有效数字，最多保留两位小数，采用截取方式的方法（这个方法返回的是double，至于返回String、float、int都是可以的）。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Print out a number using the localized number, integer, currency,</span></span><br><span class="line"><span class="comment">// and percent format for each locale</span></span><br><span class="line">Locale[] locales = NumberFormat.getAvailableLocales();</span><br><span class="line"><span class="keyword">double</span> myNumber = -<span class="number">1234.56</span>;</span><br><span class="line">NumberFormat form;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">4</span>; ++j) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;FORMAT&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; locales.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (locales[i].getCountry().length() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">continue</span>; <span class="comment">// Skip language-only locales</span></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.print(locales[i].getDisplayName());</span><br><span class="line">        <span class="keyword">switch</span> (j) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            form = NumberFormat.getInstance(locales[i]); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            form = NumberFormat.getIntegerInstance(locales[i]); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            form = NumberFormat.getCurrencyInstance(locales[i]); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            form = NumberFormat.getPercentInstance(locales[i]); <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (form <span class="keyword">instanceof</span> DecimalFormat) &#123;</span><br><span class="line">            System.out.print(<span class="string">&quot;: &quot;</span> + ((DecimalFormat) form).toPattern());</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.print(<span class="string">&quot; -&gt; &quot;</span> + form.format(myNumber));</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot; -&gt; &quot;</span> + form.parse(form.format(myNumber)));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParseException e) &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure></p>
+<h1 id="MessageFormat"><a href="#MessageFormat" class="headerlink" title="MessageFormat"></a>MessageFormat</h1><h2 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h2><p>MessageFormat 提供了以与语言无关方式生成连接消息的方式。使用此方法构造向终端用户显示的消息。</p>
+<p>MessageFormat 获取一组对象，格式化这些对象，然后将格式化后的字符串插入到模式中的适当位置。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>MessageFormat模式（主要部分）：</p>
+<pre><code>FormatElement:
+        &#123; ArgumentIndex &#125;：是从0开始的入参位置索引。
+        &#123; ArgumentIndex , FormatType &#125;
+        &#123; ArgumentIndex , FormatType , FormatStyle &#125;
+
+FormatType: ：指定使用不同的Format子类对入参进行格式化处理。值范围如下：
+        number：调用NumberFormat进行格式化
+        date：调用DateFormat进行格式化
+        time：调用DateFormat进行格式化
+        choice：调用ChoiceFormat进行格式化
+
+FormatStyle:：设置FormatType中使用的格式化样式。值范围如下：
+        short
+        medium
+        long
+        full
+        integer
+        currency
+        percent
+        SubformatPattern (子格式模式，形如#.##)
+</code></pre><p>以str为例，在这个字符串中：</p>
+<ol>
+<li>{0} 和 {1,number,short} 和 {2,number,&#35;.&#35;}; 都属于FormatElement，0,1,2是ArgumentIndex。</li>
+<li>{1,number,short} 里面的number属于FormatType，short则属于FormatStyle。</li>
+<li>{1,number,&#35;.&#35;} 里面的&#35;.&#35;就属于子格式模式。</li>
+<li>指定FormatType和FormatStyle是为了生成日期格式的值、不同精度的数字、百分比类型等等。</li>
+</ol>
+<p>实例</p>
+<blockquote>
+<p>1、ArgumentIndex必须是非负整数，它的个数不只限于0到9这10个，它可以用0到9的数字组成，因此可以有好多个，如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String msg = <span class="string">&quot;&#123;0&#125;&#123;1&#125;&#123;2&#125;&#123;3&#125;&#123;4&#125;&#123;5&#125;&#123;6&#125;&#123;7&#125;&#123;8&#125;&quot;</span>;  </span><br><span class="line">Object [] array = <span class="keyword">new</span> Object[]&#123;<span class="string">&quot;A&quot;</span>,<span class="string">&quot;B&quot;</span>,<span class="string">&quot;C&quot;</span>,<span class="string">&quot;D&quot;</span>,<span class="string">&quot;E&quot;</span>,<span class="string">&quot;F&quot;</span>,<span class="string">&quot;G&quot;</span>,<span class="string">&quot;H&quot;</span>,<span class="string">&quot;I&quot;</span>,&#125;;         </span><br><span class="line">String value = MessageFormat.format(msg, array);  </span><br><span class="line"></span><br><span class="line">System.out.println(value);  <span class="comment">// 输出：ABCDEFGHI  </span></span><br></pre></td></tr></table></figure></p>
+<p>2、格式化字符串时，两个单引号才表示一个单引号，单个单引号会被省略，除非中文单引号不会被省略，如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String value = MessageFormat.format(<span class="string">&quot;oh, &#123;0&#125; is &#x27;a&#x27; pig&quot;</span>, <span class="string">&quot;ZhangSan&quot;</span>);  </span><br><span class="line"></span><br><span class="line">System.out.println(value);  <span class="comment">// 输出：oh, ZhangSan is a pig  </span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>给字母a加上单引号，如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String value = MessageFormat.format(<span class="string">&quot;oh, &#123;0&#125; is &#x27;&#x27;a&#x27;&#x27; pig&quot;</span>, <span class="string">&quot;ZhangSan&quot;</span>);</span><br><span class="line">System.out.println(value);  <span class="comment">// 输出：oh, ZhangSan is &#x27;a&#x27; pig</span></span><br></pre></td></tr></table></figure><br>如果需要显示双引号要进行转移，比如：String msg = “oh, {0} is \”a\” pig”;</p>
+<blockquote>
+<p>3、单引号会使其后面的占位符均失效，导致直接输出占位符。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MessageFormat.format(<span class="string">&quot;&#123;0&#125;&#123;1&#125;&quot;</span>, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">// 结果12</span></span><br><span class="line">MessageFormat.format(<span class="string">&quot;&#x27;&#123;0&#125;&#123;1&#125;&quot;</span>, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">// 结果&#123;0&#125;&#123;1&#125;</span></span><br><span class="line">MessageFormat.format(<span class="string">&quot;&#x27;&#123;0&#125;&#x27;-&#123;1&#125;&quot;</span>, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">// 结果&#123;0&#125;-2</span></span><br></pre></td></tr></table></figure>
+<p>使用双引号和两个单引号没有关系，比如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String value = MessageFormat.format(<span class="string">&quot;oh, &#x27;&#x27;&#123;0&#125;&#x27;&#x27; is a pig&quot;</span>, <span class="string">&quot;ZhangSan&quot;</span>);</span><br><span class="line">System.out.println(value);  <span class="comment">// 输出：oh, &#x27;ZhangSan&#x27; is a pig</span></span><br></pre></td></tr></table></figure>
+<p>又比如，使用子格式模式，多了一个单引号：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String value = MessageFormat.format(<span class="string">&quot;oh, &#123;0,number,#.#&#125; is good num&quot;</span>, Double.valueOf(<span class="string">&quot;3.1415&quot;</span>));</span><br><span class="line">System.out.println(value);  <span class="comment">// 输出：oh, 3.1 is good num</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>4、无论是有引号字符串还是无引号字符串，左花括号都是不支持的，如：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String value = MessageFormat.format(<span class="string">&quot;oh, &#125; is good num&quot;</span>, Double.valueOf(<span class="string">&quot;3.1415&quot;</span>));</span><br><span class="line">System.out.println(value);  <span class="comment">// 输出：oh, &#125; is good num</span></span><br></pre></td></tr></table></figure>
+<p>如果使用左花括号会出现异常<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String value = MessageFormat.format(<span class="string">&quot;oh, &#123; is good num&quot;</span>, Double.valueOf(<span class="string">&quot;3.1415&quot;</span>));</span><br><span class="line">System.out.println(value);  <span class="comment">// java.lang.IllegalArgumentException: Unmatched braces in the pattern.</span></span><br></pre></td></tr></table></figure></p>
+<p>因此要使用到左花括号需要使用单引号配合使用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MessageFormat.format(“‘&#123;‘&#123;<span class="number">0</span>&#125;&#125;”, “X-rapido”); <span class="comment">// &#123;X-rapido&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>还有一个有趣的现象，如果出现两个或2个以上左花括号，就会出现分割字符串，但是右花括号就没问题，虽然没有任何意义，实际应用我们也用不到<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   String value = MessageFormat.format(<span class="string">&quot;oh, &#123;&#123; is good num&quot;</span>, <span class="string">&quot;d&quot;</span>);</span><br><span class="line">System.out.println(value);  <span class="comment">// oh, </span></span><br><span class="line"></span><br><span class="line">String value = MessageFormat.format(<span class="string">&quot;oh, &#125;&#125; is good num&quot;</span>, <span class="string">&quot;d&quot;</span>);</span><br><span class="line">   System.out.println(value);  <span class="comment">// oh, &#125;&#125; is good num </span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>5、关于MessageFormat.format方法：<br>每调用一次MessageFormat.format方法，都会新创建MessageFormat的一个实例，相当于MessageFormat只使用了一次。MessageFormat类的format方法如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">format</span><span class="params">(String pattern, Object ... arguments)</span>   </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    MessageFormat temp = <span class="keyword">new</span> MessageFormat(pattern);  </span><br><span class="line">    <span class="keyword">return</span> temp.format(arguments);  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>因此若要多次格式同一个模式的字符串，那么创建一个MessageFormat实例在执行格式化操作比较好些<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String message = <span class="string">&quot;oh, &#123;0&#125; is a pig&quot;</span>;  </span><br><span class="line">MessageFormat messageFormat = <span class="keyword">new</span> MessageFormat(message);  </span><br><span class="line">Object[] array = <span class="keyword">new</span> Object[]&#123;<span class="string">&quot;ZhangSan&quot;</span>&#125;;  </span><br><span class="line">String value = messageFormat.format(array);  </span><br><span class="line"></span><br><span class="line">System.out.println(value); </span><br></pre></td></tr></table></figure></p>
+
       
     </div>
 
