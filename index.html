@@ -145,6 +145,107 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://haiqingd.github.io/2021/06/20/Java-Format/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Haiqingd">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haiqingd's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/20/Java-Format/" class="post-title-link" itemprop="url">Java 中的 Format 介绍</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-20 23:06:38" itemprop="dateCreated datePublished" datetime="2021-06-20T23:06:38+08:00">2021-06-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-21 00:03:23" itemprop="dateModified" datetime="2021-06-21T00:03:23+08:00">2021-06-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Format-类"><a href="#Format-类" class="headerlink" title="Format 类"></a>Format 类</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Format 类位于 java.text.Format</p>
+<p>Format 是一个抽象基类，用于格式化对区域设置敏感的信息，例如日期、消息和数字。</p>
+<p>Format定义用于将区域设置敏感的对象格式化为Strings（format方法）和将Strings解析回对象（parseObject方法）的编程接口。</p>
+<p>通常，格式的parseObject方法必须能够解析由其format方法格式化的任何字符串。但是，可能存在无法实现的例外情况。例如，一个 format方法可能会创建两个相邻的整数，中间没有分隔符，在这种情况下，parseObject无法分辨哪些数字属于哪个数字。</p>
+<h2 id="类目录层次"><a href="#类目录层次" class="headerlink" title="类目录层次"></a>类目录层次</h2><p><img src="https://image.haiqingd.top/20210620234422.png" alt="Format 类目录层次"></p>
+<p>Java 平台提供了三个专门的子类Format— DateFormat、MessageFormat和 NumberFormat— 分别用于格式化日期、消息和数字。</p>
+<p>具体的子类必须实现三个方法：</p>
+<ul>
+<li>format(Object obj, StringBuffer toAppendTo, FieldPosition pos)</li>
+<li>formatToCharacterIterator(Object obj)</li>
+<li>parseObject(String source, ParsePosition pos)</li>
+</ul>
+<p>这些通用方法允许对对象进行多态解析和格式化，例如由 使用MessageFormat。子类通常还format为特定输入类型以及parse特定结果类型提供其他方法。任何parse不采取方法 ParsePosition的参数应该抛出ParseException 时需要的格式没有文本是在输入文本的开始。</p>
+<p>大多数子类还将实现以下工厂方法：</p>
+<ul>
+<li>getInstance 获取适合当前语言环境的有用格式对象</li>
+<li>getInstance(Locale) 用于获取适用于指定语言环境的有用格式对象</li>
+<li>此外，一些子类还可以实现其他 getXxxxInstance方法以进行更专业的控制。例如，NumberFormat 类提供 getPercentInstance 和 getCurrencyInstance 获取特殊的数字格式化的方法。</li>
+</ul>
+<h1 id="SimpleDateFormat"><a href="#SimpleDateFormat" class="headerlink" title="SimpleDateFormat"></a>SimpleDateFormat</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>扩展了DateFormat</p>
+<p>SimpleDateFormat是一个具体的类，用于以语言环境敏感的方式格式化和解析日期。它允许格式化（日期 -&gt; 文本）、解析（文本 -&gt; 日期）和规范化。</p>
+<p>SimpleDateFormat允许您首先为日期时间格式选择任何用户定义的模式。不过，建议您创建一个日期-时间格式有两种 getTimeInstance，getDateInstance或 getDateTimeInstance在DateFormat。这些类方法中的每一个都可以返回一个使用默认格式模式初始化的日期/时间格式化程序。您可以applyPattern根据需要使用方法修改格式模式。有关使用这些方法的更多信息，请参阅 DateFormat。</p>
+<p>SimpleDateFormat 允许以为日期-时间格式化选择任何用户指定的方式启动。 但是，希望用 DateFormat 中的 getTimeInstance、 getDateInstance 或 getDateTimeInstance 创建一个日期-时间格式化程序。 每个类方法返回一个以缺省格式化方式初始化的日期／时间格式化程序。 可以根据需要用 applyPattern 方法修改格式化方式。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.*;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  SimpleDateFormat函数语法：</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">  G 年代标志符</span></span><br><span class="line"><span class="comment">  y 年</span></span><br><span class="line"><span class="comment">  M 月</span></span><br><span class="line"><span class="comment">  d 日</span></span><br><span class="line"><span class="comment">  h 时 在上午或下午 (1~12)</span></span><br><span class="line"><span class="comment">  H 时 在一天中 (0~23)</span></span><br><span class="line"><span class="comment">  m 分</span></span><br><span class="line"><span class="comment">  s 秒</span></span><br><span class="line"><span class="comment">  S 毫秒</span></span><br><span class="line"><span class="comment">  E 星期</span></span><br><span class="line"><span class="comment">  D 一年中的第几天</span></span><br><span class="line"><span class="comment">  F 一月中第几个星期几</span></span><br><span class="line"><span class="comment">  w 一年中第几个星期</span></span><br><span class="line"><span class="comment">  W 一月中第几个星期</span></span><br><span class="line"><span class="comment">  a 上午 / 下午 标记符</span></span><br><span class="line"><span class="comment">  k 时 在一天中 (1~24)</span></span><br><span class="line"><span class="comment">  K 时 在上午或下午 (0~11)</span></span><br><span class="line"><span class="comment">  z 时区</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FormatDateTime</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SimpleDateFormat myFmt=<span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日 HH时mm分ss秒&quot;</span>);</span><br><span class="line">        SimpleDateFormat myFmt1=<span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yy/MM/dd HH:mm&quot;</span>);</span><br><span class="line">        SimpleDateFormat myFmt2=<span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);<span class="comment">//等价于now.toLocaleString()</span></span><br><span class="line">        SimpleDateFormat myFmt3=<span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日 HH时mm分ss秒 E &quot;</span>);</span><br><span class="line">        SimpleDateFormat myFmt4=<span class="keyword">new</span> SimpleDateFormat(</span><br><span class="line">                <span class="string">&quot;一年中的第 D 天 一年中第w个星期 一月中第W个星期 在一天中k时 z时区&quot;</span>);</span><br><span class="line">        Date now=<span class="keyword">new</span> Date();</span><br><span class="line">        System.out.println(myFmt.format(now));</span><br><span class="line">        System.out.println(myFmt1.format(now));</span><br><span class="line">        System.out.println(myFmt2.format(now));</span><br><span class="line">        System.out.println(myFmt3.format(now));</span><br><span class="line">        System.out.println(myFmt4.format(now));</span><br><span class="line">        System.out.println(now.toGMTString());</span><br><span class="line">        System.out.println(now.toLocaleString());</span><br><span class="line">        System.out.println(now.toString());</span><br><span class="line">    &#125;   </span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<pre><code>2004年12月16日 17时24分27秒
+04/12/16 17:24
+2004-12-16 17:24:27
+2004年12月16日 17时24分27秒 星期四
+一年中的第 351 天 一年中第51个星期 一月中第3个星期 在一天中17时 CST时区
+16 Dec 2004 09:24:27 GMT
+2004-12-16 17:24:27
+Thu Dec 16 17:24:27 CST 2004
+</code></pre><p>下面是个JavaBean:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FormatDateTime</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toLongDateString</span><span class="params">(Date dt)</span></span>&#123;</span><br><span class="line">        SimpleDateFormat myFmt=<span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日 HH时mm分ss秒 E &quot;</span>);       </span><br><span class="line">        <span class="keyword">return</span> myFmt.format(dt);</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toShortDateString</span><span class="params">(Date dt)</span></span>&#123;</span><br><span class="line">        SimpleDateFormat myFmt=<span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yy年MM月dd日 HH时mm分&quot;</span>);       </span><br><span class="line">        <span class="keyword">return</span> myFmt.format(dt);</span><br><span class="line">    &#125;   </span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toLongTimeString</span><span class="params">(Date dt)</span></span>&#123;</span><br><span class="line">        SimpleDateFormat myFmt=<span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;HH mm ss SSSS&quot;</span>);       </span><br><span class="line">        <span class="keyword">return</span> myFmt.format(dt);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toShortTimeString</span><span class="params">(Date dt)</span></span>&#123;</span><br><span class="line">        SimpleDateFormat myFmt=<span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yy/MM/dd HH:mm&quot;</span>);       </span><br><span class="line">        <span class="keyword">return</span> myFmt.format(dt);</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Date now=<span class="keyword">new</span> Date();</span><br><span class="line"></span><br><span class="line">        System.out.println(FormatDateTime.toLongDateString(now));</span><br><span class="line">        System.out.println(FormatDateTime.toShortDateString(now));</span><br><span class="line">        System.out.println(FormatDateTime.toLongTimeString(now));</span><br><span class="line">        System.out.println(FormatDateTime.toShortTimeString(now));</span><br><span class="line">    &#125;   </span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>调用的main 测试结果：<br>    2004年12月16日 17时38分26秒 星期四<br>    04年12月16日 17时38分<br>    17 38 26 0965<br>    04/12/16 17:38</p>
+<h1 id="ChoiceFormat"><a href="#ChoiceFormat" class="headerlink" title="ChoiceFormat"></a>ChoiceFormat</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><p>ChoiceFormat 允许将格式应用到某个范围的数。它通常用于在 MessageFormat 中处理复数。使用按升序排列的 double 列表指定 choice，列表中每一项都指定一个到下一项的半开区间：</p>
+<p>当且仅当 limit[j] &lt;= X &lt; limit[j+1] 时，X 匹配 j</p>
+<p>如果不匹配，则根据数 (X) 的是太小还是太大，选择使用第一个或最后一个索引。如果 limit 数组不按升序排列，则格式化的结果将不正确。ChoiceFormat 还接受 $ \infty $（等同于无穷大 (INF)）。</p>
+<h2 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h2><h1 id="DecimalFormat"><a href="#DecimalFormat" class="headerlink" title="DecimalFormat"></a>DecimalFormat</h1><h1 id="MessageFormat"><a href="#MessageFormat" class="headerlink" title="MessageFormat"></a>MessageFormat</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://haiqingd.github.io/2021/06/09/RabbitMQ-study/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -946,12 +1047,12 @@ password: guest
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
