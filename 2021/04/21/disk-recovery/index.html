@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/2021-04-21-16-46-57.png">
 <meta property="og:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/2021-04-21-16-49-28.png">
 <meta property="og:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/2021-04-21-16-50-24.png">
-<meta property="og:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/!%5B%5D(2021-04-21-16-53-02.png).png">
+<meta property="og:image" content="https://haiqingd.github.io/2021/04/21/disk-recovery/![](2021-04-21-16-53-02.png">
 <meta property="article:published_time" content="2021-04-21T03:17:48.000Z">
 <meta property="article:modified_time" content="2021-06-05T15:10:08.938Z">
 <meta property="article:author" content="Haiqingd">
@@ -204,42 +204,42 @@
 
       
         <h1 id="一、起因"><a href="#一、起因" class="headerlink" title="一、起因"></a>一、起因</h1><p>需要帮同学在他的 ssd 中装 Windows10 操作系统，在装系统的过程中误将自己的数据盘当成同学待安装系统的 ssd。然后点了删除，就是如下图所示的那一步</p>
-<p><img src="/2021/04/21/disk-recovery/2021-04-21-15-56-27.png"></p>
+<p><img src="/2021/04/21/disk-recovery/2021-04-21-15-56-27.png" alt></p>
 <p>若是只进行到了这一步，千万不要慌。只需要选择退出 Windows 安装，重新启动（原系统没问题的情况下），原来的非系统盘是没有被删除掉的。</p>
 <p>但是如果之后想要再次安装系统的话，【你想将windows安装在哪里】的这个选项卡中，原来误删掉的驱动器依然会显示是删除掉的（未分配的空间）。</p>
 <p>如果想要继续安装操作系统，务必不要嫌麻烦，先拔掉之前选择了删除的硬盘，之后再重新进安装程序。</p>
 <h1 id="二、表现：【位置不可用】"><a href="#二、表现：【位置不可用】" class="headerlink" title="二、表现：【位置不可用】"></a>二、表现：【位置不可用】</h1><ol>
-<li><p> 因为我的桌面设置过，是在 D 盘中的，所以一打开桌面就会显示【位置不可用的弹窗】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-06-08.png"></p>
+<li><p>因为我的桌面设置过，是在 D 盘中的，所以一打开桌面就会显示【位置不可用的弹窗】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-06-08.png" alt></p>
 </li>
 <li><p>打开我的电脑，发现只有一个 C 盘系统盘</p>
 </li>
 <li><p>按下<kbd>windows</kbd>键，输入 disk 回车，能找到驱动器 1，但是空间全部为未分配</p>
 </li>
 </ol>
-<p><img src="/2021/04/21/disk-recovery/2021-04-21-16-18-16.png"></p>
+<p><img src="/2021/04/21/disk-recovery/2021-04-21-16-18-16.png" alt></p>
 <h1 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h1><ul>
-<li> <strong>不要尝试重新分配空间（分区）。</strong>   </li>
-</ul>
+<li><p><strong>不要尝试重新分配空间（分区）。</strong>   </p>
 <blockquote>
 <p>重新分区后是看不到原来的数据的，因为会被格式化；而且重新分区后系统就能找到原来的 D 盘磁盘，若此时进行了一些磁盘的读写操作，磁盘就无法完全恢复了。</p>
 </blockquote>
-<ul>
-<li> <strong>不需要进行数据恢复</strong></li>
-</ul>
+</li>
+<li><p><strong>不需要进行数据恢复</strong></p>
 <blockquote>
 <p>若没有进行格式化，到目前为止的操作只是 <strong>删除了分区表</strong> ，需要做的仅仅是 <strong>重新创建分区表</strong>，而 <strong>不是进行整个磁盘的数据恢复！！！</strong></p>
 </blockquote>
+</li>
+</ul>
 <p>步骤：</p>
 <ol>
-<li>下载能够建立分区表的磁盘管理工具。我使用的是 <a target="_blank" rel="noopener" href="https://www.diskgenius.cn/download.php">DiskGeniues</a>。缺点是 DiskGeniues 的免费版本只可以在软件中创建分区表，不能保存分区表到磁盘中。需要保存分区表需要购买【标准版】以上的版本或者使用其他手段。<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-42-44.png"></li>
-<li>选到丢失的磁盘，选择【搜索已丢失分区（重建分区表）】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-46-57.png"></li>
-<li>重建后检查一下文件没有什么问题，就可以选择【保存分区表】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-49-28.png"></li>
-<li>分区表格式，这个没有研究过，我选择的是【GUID】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-50-24.png"></li>
+<li>下载能够建立分区表的磁盘管理工具。我使用的是 <a target="_blank" rel="noopener" href="https://www.diskgenius.cn/download.php">DiskGeniues</a>。缺点是 DiskGeniues 的免费版本只可以在软件中创建分区表，不能保存分区表到磁盘中。需要保存分区表需要购买【标准版】以上的版本或者使用其他手段。<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-42-44.png" alt></li>
+<li>选到丢失的磁盘，选择【搜索已丢失分区（重建分区表）】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-46-57.png" alt></li>
+<li>重建后检查一下文件没有什么问题，就可以选择【保存分区表】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-49-28.png" alt></li>
+<li>分区表格式，这个没有研究过，我选择的是【GUID】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-50-24.png" alt></li>
 <li>点击确定后，硬盘就可以访问了。此时可能会遇到盘符和原来不一致的问题。若没有这一问题，就大功告成了。</li>
-<li>若有盘符问题，打开磁盘管理（开始菜单搜索disk）,选择更改驱动器和路径，分配到原来的位置。<br><img src="/2021/04/21/disk-recovery/!%5B%5D(2021-04-21-16-53-02.png).png"></li>
+<li>若有盘符问题，打开磁盘管理（开始菜单搜索disk）,选择更改驱动器和路径，分配到原来的位置。<br><img src="/2021/04/21/disk-recovery/![](2021-04-21-16-53-02.png" alt>.png)</li>
 <li>此时已经大功告成了，这样操作得到的数据是完全和之前一样的，不会有任何的损坏，也不需要花时间拷贝或是数据恢复，如果有一些应用或服务有问题，尝试重新启动一下计算机。</li>
 </ol>
-<p><a target="_blank" rel="noopener" href="http://privatefile.haiqingd.top/DiskGeniusPro.v5.1.1.596.x86.Chs.%D0%BE%D1%82.%E5%B9%B8%E8%BF%90%E7%9A%84%E8%8D%89.exe?e=1622909288&attname=&token=ZAJ8CutiDEyMTKQ_mSp2WXjAERLCKzc9J-d8Libw:WlVsgk2E1uCx-EoIhK40BXNZAfo=">神秘链接</a></p>
+<p><a target="_blank" rel="noopener" href="http://privatefile.haiqingd.top/DiskGeniusPro.v5.1.1.596.x86.Chs.%D0%BE%D1%82.%E5%B9%B8%E8%BF%90%E7%9A%84%E8%8D%89.exe?e=1622909288&amp;attname=&amp;token=ZAJ8CutiDEyMTKQ_mSp2WXjAERLCKzc9J-d8Libw:WlVsgk2E1uCx-EoIhK40BXNZAfo=">神秘链接</a></p>
 
     </div>
 

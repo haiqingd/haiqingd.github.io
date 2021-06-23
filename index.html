@@ -423,13 +423,12 @@ FormatStyle:：设置FormatType中使用的格式化样式。值范围如下：
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="https://image.haiqingd.top/20210609104716.png"></p>
+          <p><img src="https://image.haiqingd.top/20210609104716.png" alt></p>
 <h1 id="一、RabbitMQ介绍"><a href="#一、RabbitMQ介绍" class="headerlink" title="一、RabbitMQ介绍"></a>一、RabbitMQ介绍</h1><h2 id="1-1-引言"><a href="#1-1-引言" class="headerlink" title="1.1 引言"></a>1.1 引言</h2><p>RabbitMQ解决的问题</p>
 <pre><code>1、模块之间的耦合度过高，导致一个模块宕机后，全部功能都不能用 。
 
 2、同步通讯的成本问题
-</code></pre>
-<p><img src="https://image.haiqingd.top/20210609110613.png" alt="使用场景"></p>
+</code></pre><p><img src="https://image.haiqingd.top/20210609110613.png" alt="使用场景"></p>
 <h2 id="1-2-RabbitMQ的介绍"><a href="#1-2-RabbitMQ的介绍" class="headerlink" title="1.2 RabbitMQ的介绍"></a>1.2 RabbitMQ的介绍</h2><p>市面上比较火爆的几款MQ:</p>
 <p>ActiveMQ, RocketMQ, Kafka, RabbitMQ.</p>
 <ul>
@@ -442,22 +441,17 @@ FormatStyle:：设置FormatType中使用的格式化样式。值范围如下：
 <p>RabbitMQ严格地遵循AMQP协议（高级消息队列协议，帮助我们在进程之间传递异步消息）</p>
 <p>二、RabbitMQ安装  </p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">version:&quot;3.1&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="string">image:daocloud.io/library/rabbitmq:management</span></span><br><span class="line">    <span class="string">restart:always</span></span><br><span class="line">    <span class="string">container_name:rabbitmq</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5672</span><span class="string">:5672</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">15672</span><span class="string">:15672</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data:/var/lib/rabbitmq</span></span><br></pre></td></tr></table></figure>
-
 <p>描述了在Linux下的操作步骤</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir docker_rabbitmq</span><br><span class="line">cd docker_rabbitmq</span><br><span class="line">vi docker-compose.yml</span><br></pre></td></tr></table></figure>
-<p>将之前的yml文件复制进去</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
-<p>打开浏览器访问15672端口</p>
+<p>将之前的yml文件复制进去<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure><br>打开浏览器访问15672端口</p>
 <pre><code>username: guest
 password: guest
-</code></pre>
-<h1 id="三、RabbitMQ架构"><a href="#三、RabbitMQ架构" class="headerlink" title="三、RabbitMQ架构"></a>三、RabbitMQ架构</h1><h2 id="3-1-官方的简单架构"><a href="#3-1-官方的简单架构" class="headerlink" title="3.1 官方的简单架构"></a>3.1 官方的简单架构</h2><pre><code>1、Publisher - 生产者：发布消息到RabbitMQ重的Exchange
+</code></pre><h1 id="三、RabbitMQ架构"><a href="#三、RabbitMQ架构" class="headerlink" title="三、RabbitMQ架构"></a>三、RabbitMQ架构</h1><h2 id="3-1-官方的简单架构"><a href="#3-1-官方的简单架构" class="headerlink" title="3.1 官方的简单架构"></a>3.1 官方的简单架构</h2><pre><code>1、Publisher - 生产者：发布消息到RabbitMQ重的Exchange
 2、Cosumer - 消费者：监听RabbitMQ中的Queue中的消息
 3、Exchange - 交换机：和生产者连接并接收生产者的消息
 4、Queue - 队列：Exchange会将消息发布到指定的Queue，Queue和消费者进行交互
 5、Route - 路由：交换机以什么样的策略将消息发布到Queue
-</code></pre>
-<p><img src="https://image.haiqingd.top/20210609141547.png"></p>
+</code></pre><p><img src="https://image.haiqingd.top/20210609141547.png" alt></p>
 <h2 id="3-2RabbitMQ的完整架构图"><a href="#3-2RabbitMQ的完整架构图" class="headerlink" title="3.2RabbitMQ的完整架构图"></a>3.2RabbitMQ的完整架构图</h2>
       
     </div>
@@ -590,42 +584,42 @@ password: guest
 
       
           <h1 id="一、起因"><a href="#一、起因" class="headerlink" title="一、起因"></a>一、起因</h1><p>需要帮同学在他的 ssd 中装 Windows10 操作系统，在装系统的过程中误将自己的数据盘当成同学待安装系统的 ssd。然后点了删除，就是如下图所示的那一步</p>
-<p><img src="/2021/04/21/disk-recovery/2021-04-21-15-56-27.png"></p>
+<p><img src="/2021/04/21/disk-recovery/2021-04-21-15-56-27.png" alt></p>
 <p>若是只进行到了这一步，千万不要慌。只需要选择退出 Windows 安装，重新启动（原系统没问题的情况下），原来的非系统盘是没有被删除掉的。</p>
 <p>但是如果之后想要再次安装系统的话，【你想将windows安装在哪里】的这个选项卡中，原来误删掉的驱动器依然会显示是删除掉的（未分配的空间）。</p>
 <p>如果想要继续安装操作系统，务必不要嫌麻烦，先拔掉之前选择了删除的硬盘，之后再重新进安装程序。</p>
 <h1 id="二、表现：【位置不可用】"><a href="#二、表现：【位置不可用】" class="headerlink" title="二、表现：【位置不可用】"></a>二、表现：【位置不可用】</h1><ol>
-<li><p> 因为我的桌面设置过，是在 D 盘中的，所以一打开桌面就会显示【位置不可用的弹窗】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-06-08.png"></p>
+<li><p>因为我的桌面设置过，是在 D 盘中的，所以一打开桌面就会显示【位置不可用的弹窗】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-06-08.png" alt></p>
 </li>
 <li><p>打开我的电脑，发现只有一个 C 盘系统盘</p>
 </li>
 <li><p>按下<kbd>windows</kbd>键，输入 disk 回车，能找到驱动器 1，但是空间全部为未分配</p>
 </li>
 </ol>
-<p><img src="/2021/04/21/disk-recovery/2021-04-21-16-18-16.png"></p>
+<p><img src="/2021/04/21/disk-recovery/2021-04-21-16-18-16.png" alt></p>
 <h1 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h1><ul>
-<li> <strong>不要尝试重新分配空间（分区）。</strong>   </li>
-</ul>
+<li><p><strong>不要尝试重新分配空间（分区）。</strong>   </p>
 <blockquote>
 <p>重新分区后是看不到原来的数据的，因为会被格式化；而且重新分区后系统就能找到原来的 D 盘磁盘，若此时进行了一些磁盘的读写操作，磁盘就无法完全恢复了。</p>
 </blockquote>
-<ul>
-<li> <strong>不需要进行数据恢复</strong></li>
-</ul>
+</li>
+<li><p><strong>不需要进行数据恢复</strong></p>
 <blockquote>
 <p>若没有进行格式化，到目前为止的操作只是 <strong>删除了分区表</strong> ，需要做的仅仅是 <strong>重新创建分区表</strong>，而 <strong>不是进行整个磁盘的数据恢复！！！</strong></p>
 </blockquote>
+</li>
+</ul>
 <p>步骤：</p>
 <ol>
-<li>下载能够建立分区表的磁盘管理工具。我使用的是 <a target="_blank" rel="noopener" href="https://www.diskgenius.cn/download.php">DiskGeniues</a>。缺点是 DiskGeniues 的免费版本只可以在软件中创建分区表，不能保存分区表到磁盘中。需要保存分区表需要购买【标准版】以上的版本或者使用其他手段。<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-42-44.png"></li>
-<li>选到丢失的磁盘，选择【搜索已丢失分区（重建分区表）】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-46-57.png"></li>
-<li>重建后检查一下文件没有什么问题，就可以选择【保存分区表】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-49-28.png"></li>
-<li>分区表格式，这个没有研究过，我选择的是【GUID】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-50-24.png"></li>
+<li>下载能够建立分区表的磁盘管理工具。我使用的是 <a target="_blank" rel="noopener" href="https://www.diskgenius.cn/download.php">DiskGeniues</a>。缺点是 DiskGeniues 的免费版本只可以在软件中创建分区表，不能保存分区表到磁盘中。需要保存分区表需要购买【标准版】以上的版本或者使用其他手段。<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-42-44.png" alt></li>
+<li>选到丢失的磁盘，选择【搜索已丢失分区（重建分区表）】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-46-57.png" alt></li>
+<li>重建后检查一下文件没有什么问题，就可以选择【保存分区表】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-49-28.png" alt></li>
+<li>分区表格式，这个没有研究过，我选择的是【GUID】<br><img src="/2021/04/21/disk-recovery/2021-04-21-16-50-24.png" alt></li>
 <li>点击确定后，硬盘就可以访问了。此时可能会遇到盘符和原来不一致的问题。若没有这一问题，就大功告成了。</li>
-<li>若有盘符问题，打开磁盘管理（开始菜单搜索disk）,选择更改驱动器和路径，分配到原来的位置。<br><img src="/2021/04/21/disk-recovery/!%5B%5D(2021-04-21-16-53-02.png).png"></li>
+<li>若有盘符问题，打开磁盘管理（开始菜单搜索disk）,选择更改驱动器和路径，分配到原来的位置。<br><img src="/2021/04/21/disk-recovery/![](2021-04-21-16-53-02.png" alt>.png)</li>
 <li>此时已经大功告成了，这样操作得到的数据是完全和之前一样的，不会有任何的损坏，也不需要花时间拷贝或是数据恢复，如果有一些应用或服务有问题，尝试重新启动一下计算机。</li>
 </ol>
-<p><a target="_blank" rel="noopener" href="http://privatefile.haiqingd.top/DiskGeniusPro.v5.1.1.596.x86.Chs.%D0%BE%D1%82.%E5%B9%B8%E8%BF%90%E7%9A%84%E8%8D%89.exe?e=1622909288&attname=&token=ZAJ8CutiDEyMTKQ_mSp2WXjAERLCKzc9J-d8Libw:WlVsgk2E1uCx-EoIhK40BXNZAfo=">神秘链接</a></p>
+<p><a target="_blank" rel="noopener" href="http://privatefile.haiqingd.top/DiskGeniusPro.v5.1.1.596.x86.Chs.%D0%BE%D1%82.%E5%B9%B8%E8%BF%90%E7%9A%84%E8%8D%89.exe?e=1622909288&amp;attname=&amp;token=ZAJ8CutiDEyMTKQ_mSp2WXjAERLCKzc9J-d8Libw:WlVsgk2E1uCx-EoIhK40BXNZAfo=">神秘链接</a></p>
 
       
     </div>
@@ -690,7 +684,7 @@ password: guest
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>因为惠普默认<kbd>Fn</kbd>功能键是开启的，也就是说，按f5就直接开启键盘灯，无需<kbd>Fn</kbd>+<kbd>F5</kbd>.<br>但是，对于需要用到<kbd>F1</kbd>到<kbd>F12</kbd>的用户就不方便了，这个可以在BIOS中设置。<br>开机 按 <kbd>F10</kbd> 进入 BIOS 设置， 找到Fn功能键那一项，改成关闭即可<br><img src="/2021/04/11/fn-exchange/2021-04-11-12-26-06.png"><br><img src="/2021/04/11/fn-exchange/2021-04-11-12-25-55.png"></p>
+          <p>因为惠普默认<kbd>Fn</kbd>功能键是开启的，也就是说，按f5就直接开启键盘灯，无需<kbd>Fn</kbd>+<kbd>F5</kbd>.<br>但是，对于需要用到<kbd>F1</kbd>到<kbd>F12</kbd>的用户就不方便了，这个可以在BIOS中设置。<br>开机 按 <kbd>F10</kbd> 进入 BIOS 设置， 找到Fn功能键那一项，改成关闭即可<br><img src="/2021/04/11/fn-exchange/2021-04-11-12-26-06.png" alt><br><img src="/2021/04/11/fn-exchange/2021-04-11-12-25-55.png" alt></p>
 
       
     </div>
@@ -811,8 +805,7 @@ password: guest
 <h2 id="UnityBasics-15-19-Basic-Coding"><a href="#UnityBasics-15-19-Basic-Coding" class="headerlink" title="UnityBasics - 15-19 - Basic Coding"></a>UnityBasics - 15-19 - Basic Coding</h2><h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><h4 id="添加组件"><a href="#添加组件" class="headerlink" title="添加组件"></a>添加组件</h4><ul>
 <li>选择到对应的 3d Object - Add Component - 输入脚本名 - new script - Create and Add</li>
 </ul>
-<h4 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h4><p>一个基础的程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class IronBars : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Start is called before the first frame update</span><br><span class="line">    &#x2F;&#x2F; 1.Variables 变量定义区</span><br><span class="line">    public int x;</span><br><span class="line">    public float y;</span><br><span class="line">    [Range(1,15)] &#x2F;&#x2F; 在 unity 中的滑动范围</span><br><span class="line">    public float z;</span><br><span class="line"></span><br><span class="line">    public string name;</span><br><span class="line">    </span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 2.一次性程序码区</span><br><span class="line">        &#x2F;&#x2F; print(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Update is called once per frame</span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 3.重复式程序码区 60次&#x2F;秒</span><br><span class="line">        print(z);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h4><p>一个基础的程序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class IronBars : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Start is called before the first frame update</span><br><span class="line">    &#x2F;&#x2F; 1.Variables 变量定义区</span><br><span class="line">    public int x;</span><br><span class="line">    public float y;</span><br><span class="line">    [Range(1,15)] &#x2F;&#x2F; 在 unity 中的滑动范围</span><br><span class="line">    public float z;</span><br><span class="line"></span><br><span class="line">    public string name;</span><br><span class="line">    </span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 2.一次性程序码区</span><br><span class="line">        &#x2F;&#x2F; print(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Update is called once per frame</span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 3.重复式程序码区 60次&#x2F;秒</span><br><span class="line">        print(z);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h3><h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3>
       
     </div>
@@ -884,22 +877,26 @@ password: guest
 <li>Sphere 球体</li>
 <li>Quad 四边形（4）<br>Plane 平面（&gt;4）</li>
 <li>Cylinder 圆柱体</li>
-<li>Capsule 胶囊<br><img src="/2021/03/14/unity-notes-02/2021-03-14-16-45-30.png"><h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h3><h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-06-07-Materials-1-、-2"><a href="#UnityBasics-06-07-Materials-1-、-2" class="headerlink" title="UnityBasics - 06/07 - Materials(1)、(2)"></a>UnityBasics - 06/07 - Materials(1)、(2)</h2><h3 id="笔记-1"><a href="#笔记-1" class="headerlink" title="笔记"></a>笔记</h3>材质球（material）<br>颜色填充：在资源管理器右键create - Material, 在右侧的监视器中修改 Albedo 色彩值，之后拖动到原型上<br><img src="/2021/03/14/unity-notes-02/2021-03-14-16-54-51.png">  </li>
+<li><p>Capsule 胶囊<br><img src="/2021/03/14/unity-notes-02/2021-03-14-16-45-30.png" alt></p>
+<h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h3><h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-06-07-Materials-1-、-2"><a href="#UnityBasics-06-07-Materials-1-、-2" class="headerlink" title="UnityBasics - 06/07 - Materials(1)、(2)"></a>UnityBasics - 06/07 - Materials(1)、(2)</h2><h3 id="笔记-1"><a href="#笔记-1" class="headerlink" title="笔记"></a>笔记</h3><p>材质球（material）<br>颜色填充：在资源管理器右键create - Material, 在右侧的监视器中修改 Albedo 色彩值，之后拖动到原型上<br><img src="/2021/03/14/unity-notes-02/2021-03-14-16-54-51.png" alt>  </p>
+<p>1. Albedo（反光色）: 可以塞贴图 Texture</p>
+</li>
+<li>Tilling: 重复次数</li>
+<li>Offset: 偏移量</li>
+<li>Metalic：金属度（满档的时候会清楚地看到天空的反光）</li>
+<li>Smoothness: 平滑度</li>
+<li>Normal Map: 法向量贴图<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-11-15.png" alt><h3 id="疑问-1"><a href="#疑问-1" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-1"><a href="#资料-1" class="headerlink" title="资料"></a>资料</h3><a target="_blank" rel="noopener" href="https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fwww.123rf.com%2Fphoto_132810803_red-brick-texture-seamless-pattern-ancient-brick-wall-texture-background-close-up.html&amp;psig=AOvVaw0EZA3cY-pN8K4XWhpPqtxE&amp;ust=1615798623549000&amp;source=images&amp;cd=vfe&amp;ved=0CAIQjRxqFwoTCPiSwIm1r-8CFQAAAAAdAAAAABAI">brick texture</a><br>免费材质网站 <a target="_blank" rel="noopener" href="https://freepbr.com/"><em>freepbr</em></a><h3 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-08-Skybox"><a href="#UnityBasics-08-Skybox" class="headerlink" title="UnityBasics - 08 - Skybox"></a>UnityBasics - 08 - Skybox</h2><h3 id="笔记-2"><a href="#笔记-2" class="headerlink" title="笔记"></a>笔记</h3>skybox：天空盒<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-21-24.png" alt><br>mapping 选为3D<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-26-09.png" alt><br>成果<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-33-54.png" alt><h3 id="疑问-2"><a href="#疑问-2" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-2"><a href="#资料-2" class="headerlink" title="资料"></a>资料</h3><a target="_blank" rel="noopener" href="https://www.google.com/search?q=skybox&amp;tbm=isch"><em>skybox素材</em></a><h3 id="补充-2"><a href="#补充-2" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-09-Skybox-and-Materials"><a href="#UnityBasics-09-Skybox-and-Materials" class="headerlink" title="UnityBasics - 09 - Skybox and Materials"></a>UnityBasics - 09 - Skybox and Materials</h2><h3 id="笔记-3"><a href="#笔记-3" class="headerlink" title="笔记"></a>笔记</h3><ol>
+<li>选择球体 Sphere, 将平滑度 Smoothness 调为 1, 可以观察到球体可以反射天空的材质。但并非实时运算，旁边的正方体 Cube 并没有被反射，如下图。<br><img src="/2021/03/14/unity-notes-02/2021-03-19-14-34-03.png" alt>  </li>
+<li>在 Lighting 中的三个选项：  </li>
 </ol>
-<p>  1. Albedo（反光色）: 可以塞贴图 Texture<br>  2. Tilling: 重复次数<br>  3. Offset: 偏移量<br>  4. Metalic：金属度（满档的时候会清楚地看到天空的反光）<br>  5. Smoothness: 平滑度<br>  6. Normal Map: 法向量贴图<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-11-15.png"></p>
-<h3 id="疑问-1"><a href="#疑问-1" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-1"><a href="#资料-1" class="headerlink" title="资料"></a>资料</h3><p><a target="_blank" rel="noopener" href="https://www.google.com/url?sa=i&url=https://www.123rf.com/photo_132810803_red-brick-texture-seamless-pattern-ancient-brick-wall-texture-background-close-up.html&psig=AOvVaw0EZA3cY-pN8K4XWhpPqtxE&ust=1615798623549000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiSwIm1r-8CFQAAAAAdAAAAABAI">brick texture</a><br>免费材质网站 <a target="_blank" rel="noopener" href="https://freepbr.com/"><em>freepbr</em></a></p>
-<h3 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-08-Skybox"><a href="#UnityBasics-08-Skybox" class="headerlink" title="UnityBasics - 08 - Skybox"></a>UnityBasics - 08 - Skybox</h2><h3 id="笔记-2"><a href="#笔记-2" class="headerlink" title="笔记"></a>笔记</h3><p>skybox：天空盒<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-21-24.png"><br>mapping 选为3D<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-26-09.png"><br>成果<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-33-54.png"></p>
-<h3 id="疑问-2"><a href="#疑问-2" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-2"><a href="#资料-2" class="headerlink" title="资料"></a>资料</h3><p><a target="_blank" rel="noopener" href="https://www.google.com/search?q=skybox&tbm=isch"><em>skybox素材</em></a></p>
-<h3 id="补充-2"><a href="#补充-2" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-09-Skybox-and-Materials"><a href="#UnityBasics-09-Skybox-and-Materials" class="headerlink" title="UnityBasics - 09 - Skybox and Materials"></a>UnityBasics - 09 - Skybox and Materials</h2><h3 id="笔记-3"><a href="#笔记-3" class="headerlink" title="笔记"></a>笔记</h3><ol>
-<li>选择球体 Sphere, 将平滑度 Smoothness 调为 1, 可以观察到球体可以反射天空的材质。但并非实时运算，旁边的正方体 Cube 并没有被反射，如下图。<br><img src="/2021/03/14/unity-notes-02/2021-03-19-14-34-03.png">  </li>
-<li>在 Lighting 中的三个选项：  <ul>
+<ul>
 <li>Skybox Matetrial：天空球</li>
 <li>Sun Source：Unity 预设的太阳（选择Default Skybox 预览）</li>
 <li>Environment Lighting：环境光（最暗的颜色）<ul>
 <li>Source - Gradient：<ul>
 <li>Skycolor: 反射的天空颜色</li>
 <li>Equator Color: 反射的赤道颜色</li>
-<li>Ground Color: 反射的地面颜色<br><img src="/2021/03/14/unity-notes-02/2021-03-19-15-41-27.png"></li>
+<li>Ground Color: 反射的地面颜色<br><img src="/2021/03/14/unity-notes-02/2021-03-19-15-41-27.png" alt></li>
 </ul>
 </li>
 <li>Source - Skybox:<ul>
@@ -917,42 +914,43 @@ password: guest
 <li>Bounces：模拟反射的次数<h3 id="疑问-3"><a href="#疑问-3" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-3"><a href="#资料-3" class="headerlink" title="资料"></a>资料</h3><h3 id="补充-3"><a href="#补充-3" class="headerlink" title="补充"></a>补充</h3></li>
 </ul>
 </li>
+<li>新版 2019.03.b09 的lighting setting 在 Window→Rendering→lighting setting 中，不再单独列出lighting</li>
+<li>Smoothness 和 Matallic 的区别<br>环境光底色设置为红色，反射光为 Skybox 情况下的对比：<table>
+<tr>
+ <td><center><img style="border-radius: 0.3125em;
+ box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-16-14-19.png">
+ <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+ display: inline-block;
+ color: #999;
+ padding: 2px;">Smoothness 为 0，Matallic 为 0</div></center></td>
+ <td><center><img style="border-radius: 0.3125em;
+ box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-16-15-35.png">
+ <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+ display: inline-block;
+ color: #999;
+ padding: 2px;">Smoothness 为 0，Matallic 为 1</div></center></td>
+</tr>
+<tr>
+ <td><center><img style="border-radius: 0.3125em;
+ box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-15-53-40.png">
+ <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+ display: inline-block;
+ color: #999;
+ padding: 2px;">Smoothness 为 1，Matallic 为 0</div></center></td>
+ <td><center><img style="border-radius: 0.3125em;
+ box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-15-54-16.png">
+ <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+ display: inline-block;
+ color: #999;
+ padding: 2px;">Smoothness 为 1，Matallic 为 1</div></center></td>
+</tr>
+</table>
+
+
+</li>
 </ul>
 </li>
 </ol>
-<ul>
-<li>新版 2019.03.b09 的lighting setting 在 Window→Rendering→lighting setting 中，不再单独列出lighting</li>
-<li>Smoothness 和 Matallic 的区别<br>环境光底色设置为红色，反射光为 Skybox 情况下的对比：<table>
-  <tr>
-      <td><center><img style="border-radius: 0.3125em;
-      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-16-14-19.png">
-      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-      display: inline-block;
-      color: #999;
-      padding: 2px;">Smoothness 为 0，Matallic 为 0</div></center></td>
-      <td><center><img style="border-radius: 0.3125em;
-      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-16-15-35.png">
-      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-      display: inline-block;
-      color: #999;
-      padding: 2px;">Smoothness 为 0，Matallic 为 1</div></center></td>
-  </tr>
-  <tr>
-      <td><center><img style="border-radius: 0.3125em;
-      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-15-53-40.png">
-      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-      display: inline-block;
-      color: #999;
-      padding: 2px;">Smoothness 为 1，Matallic 为 0</div></center></td>
-      <td><center><img style="border-radius: 0.3125em;
-      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-15-54-16.png">
-      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-      display: inline-block;
-      color: #999;
-      padding: 2px;">Smoothness 为 1，Matallic 为 1</div></center></td>
-  </tr>
-</table></li>
-</ul>
 <h2 id="UnityBasics-10-Add-Floor"><a href="#UnityBasics-10-Add-Floor" class="headerlink" title="UnityBasics - 10 - Add Floor"></a>UnityBasics - 10 - Add Floor</h2><h3 id="笔记-4"><a href="#笔记-4" class="headerlink" title="笔记"></a>笔记</h3><p>除了 albedo 和 normal, 还需要 ao，height 和roughness 材质<br>对应关系</p>
 <ul>
 <li>albedo : Albedo</li>
@@ -961,40 +959,30 @@ password: guest
 <li>heignt : Height Map  </li>
 <li>roughness 需要图层操作，具体移步<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18x411X7ds?p=10"><em>此视频</em></a><br>(Height Map 会占用较多资源)</li>
 </ul>
-<p><img src="/2021/03/14/unity-notes-02/2021-03-20-14-45-07.png"></p>
+<p><img src="/2021/03/14/unity-notes-02/2021-03-20-14-45-07.png" alt></p>
 <h3 id="疑问-4"><a href="#疑问-4" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-4"><a href="#资料-4" class="headerlink" title="资料"></a>资料</h3><p><a target="_blank" rel="noopener" href="https://www.textures.com/"><em>textures.com</em></a>（材质网站）</p>
 <h3 id="补充-4"><a href="#补充-4" class="headerlink" title="补充"></a>补充</h3><ul>
-<li><p>一个胶囊体（Capsule）的大小和一个人相似，可以用来预览人在地面上的比例</p>
-<h2 id="UnityBasics-11-Add-Player"><a href="#UnityBasics-11-Add-Player" class="headerlink" title="UnityBasics - 11 - Add Player"></a>UnityBasics - 11 - Add Player</h2><h3 id="笔记-5"><a href="#笔记-5" class="headerlink" title="笔记"></a>笔记</h3></li>
-<li><p>下载Unity-Chan Model,并选择导入</p>
-</li>
-<li><p>打开 Assets - unity-chan! - Unity-chan! Model - Prefabs(预制物件) - for Locomotion</p>
-</li>
-<li><p>将 unitychan 拖到屏幕中</p>
-</li>
-<li><p>点击上方的 Play<br><img src="/2021/03/14/unity-notes-02/2021-03-20-15-10-01.png"></p>
-</li>
+<li>一个胶囊体（Capsule）的大小和一个人相似，可以用来预览人在地面上的比例<h2 id="UnityBasics-11-Add-Player"><a href="#UnityBasics-11-Add-Player" class="headerlink" title="UnityBasics - 11 - Add Player"></a>UnityBasics - 11 - Add Player</h2><h3 id="笔记-5"><a href="#笔记-5" class="headerlink" title="笔记"></a>笔记</h3></li>
+<li>下载Unity-Chan Model,并选择导入</li>
+<li>打开 Assets - unity-chan! - Unity-chan! Model - Prefabs(预制物件) - for Locomotion</li>
+<li>将 unitychan 拖到屏幕中</li>
+<li>点击上方的 Play<br><img src="/2021/03/14/unity-notes-02/2021-03-20-15-10-01.png" alt></li>
 <li><p>将固定视角改为第三人称视角</p>
 <ul>
 <li>调整 Main Camera 到合适的视角</li>
 <li>将 Main Camera 塞进 unitychan 部件中  </li>
 </ul>
-<p><img src="/2021/03/14/unity-notes-02/2021-03-20-15-29-42.png"></p>
+<p><img src="/2021/03/14/unity-notes-02/2021-03-20-15-29-42.png" alt></p>
 <h3 id="疑问-5"><a href="#疑问-5" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-5"><a href="#资料-5" class="headerlink" title="资料"></a>资料</h3></li>
-<li><p>在 Scene 视窗中有选项卡 Asset Store，若没有则按<kbd>Ctrl</kbd> + <kbd>9</kbd> 可以调出<br>在商城中搜索 <code>Unity-Chan</code>，选到一个免费的 Model, 下载并解压</p>
-<h3 id="补充-5"><a href="#补充-5" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-12-Add-Wall"><a href="#UnityBasics-12-Add-Wall" class="headerlink" title="UnityBasics - 12 - Add Wall"></a>UnityBasics - 12 - Add Wall</h2><h3 id="笔记-6"><a href="#笔记-6" class="headerlink" title="笔记"></a>笔记</h3></li>
-<li><p>父子关系：在 Hirearchy(树状列表)中新建 Empty Object<br><img src="/2021/03/14/unity-notes-02/2021-03-21-11-44-33.png"></p>
-</li>
-<li><p>预制物件：将 Hierarchy 中的父子物件 Wall 拖拽到资源管理器中，变成 prefab 文件<br><img src="/2021/03/14/unity-notes-02/2021-03-21-11-47-28.png"></p>
-<h3 id="疑问-6"><a href="#疑问-6" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-6"><a href="#资料-6" class="headerlink" title="资料"></a>资料</h3><p><a target="_blank" rel="noopener" href="https://www.google.com/search?q=crate+maker(effect)&tbm=isch&ved=2ahUKEwihubifsL7vAhVDKqYKHZi-B9UQ2-cCegQIABAA&oq=crate+maker(effect)&gs_lcp=CgNpbWcQAzoECCMQJzoCCAA6BAgAEB46BAgAEBM6CAgAEAgQHhATOggIABAFEB4QEzoGCAAQCBAeUNXVBFiYhgVg54kFaABwAHgAgAGgAogB8ROSAQYwLjEyLjKYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=FKhVYKHfC8PUmAWY_Z6oDQ&bih=754&biw=1536&safe=strict#imgrc=DGcW8dhOaIGrWM"><em>crate texture</em></a></p>
-<h3 id="补充-6"><a href="#补充-6" class="headerlink" title="补充"></a>补充</h3><p>在没有选择冻结XYZ时，视角会出现倾斜<br><img src="/2021/03/14/unity-notes-02/2021-03-20-15-56-41.png">  </p>
-</li>
+<li>在 Scene 视窗中有选项卡 Asset Store，若没有则按<kbd>Ctrl</kbd> + <kbd>9</kbd> 可以调出<br>在商城中搜索 <code>Unity-Chan</code>，选到一个免费的 Model, 下载并解压<h3 id="补充-5"><a href="#补充-5" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-12-Add-Wall"><a href="#UnityBasics-12-Add-Wall" class="headerlink" title="UnityBasics - 12 - Add Wall"></a>UnityBasics - 12 - Add Wall</h2><h3 id="笔记-6"><a href="#笔记-6" class="headerlink" title="笔记"></a>笔记</h3></li>
+<li>父子关系：在 Hirearchy(树状列表)中新建 Empty Object<br><img src="/2021/03/14/unity-notes-02/2021-03-21-11-44-33.png" alt></li>
+<li>预制物件：将 Hierarchy 中的父子物件 Wall 拖拽到资源管理器中，变成 prefab 文件<br><img src="/2021/03/14/unity-notes-02/2021-03-21-11-47-28.png" alt><h3 id="疑问-6"><a href="#疑问-6" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-6"><a href="#资料-6" class="headerlink" title="资料"></a>资料</h3><a target="_blank" rel="noopener" href="https://www.google.com/search?q=crate+maker(effect"><em>crate texture</em></a>&amp;tbm=isch&amp;ved=2ahUKEwihubifsL7vAhVDKqYKHZi-B9UQ2-cCegQIABAA&amp;oq=crate+maker(effect)&amp;gs_lcp=CgNpbWcQAzoECCMQJzoCCAA6BAgAEB46BAgAEBM6CAgAEAgQHhATOggIABAFEB4QEzoGCAAQCBAeUNXVBFiYhgVg54kFaABwAHgAgAGgAogB8ROSAQYwLjEyLjKYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&amp;sclient=img&amp;ei=FKhVYKHfC8PUmAWY_Z6oDQ&amp;bih=754&amp;biw=1536&amp;safe=strict#imgrc=DGcW8dhOaIGrWM)<h3 id="补充-6"><a href="#补充-6" class="headerlink" title="补充"></a>补充</h3>在没有选择冻结XYZ时，视角会出现倾斜<br><img src="/2021/03/14/unity-notes-02/2021-03-20-15-56-41.png" alt>  </li>
 </ul>
 <h2 id="UnityBasics-13-Use-Block-Creator"><a href="#UnityBasics-13-Use-Block-Creator" class="headerlink" title="UnityBasics - 13 - Use Block Creator"></a>UnityBasics - 13 - Use Block Creator</h2><h3 id="笔记-7"><a href="#笔记-7" class="headerlink" title="笔记"></a>笔记</h3><ul>
 <li>打开 Assets - Building_Blocks_LITE - Prefabs - 1_M_Tall</li>
 <li>制作一个台阶<h3 id="疑问-7"><a href="#疑问-7" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-7"><a href="#资料-7" class="headerlink" title="资料"></a>资料</h3></li>
 <li>在 Scene 视窗中有选项卡 Asset Store，若没有则按<kbd>Ctrl</kbd> + <kbd>9</kbd> 可以调出<br>在商城中搜索 <code>Block Creator LITE</code>，选到一个免费的 Model, 下载并解压<h3 id="补充-7"><a href="#补充-7" class="headerlink" title="补充"></a>补充</h3></li>
-<li>当两个素材某一个面上的尺寸重合时，会发生 Z-Fighting, 使得视角移动时看到两个场景闪烁<br>解决方法，移动一个素材一个0.001的距离<h2 id="UnityBasics-14-Iron-Bars"><a href="#UnityBasics-14-Iron-Bars" class="headerlink" title="UnityBasics - 14 - Iron Bars"></a>UnityBasics - 14 - Iron Bars</h2><h3 id="笔记-8"><a href="#笔记-8" class="headerlink" title="笔记"></a>笔记</h3>累了不写了，照着截图做，没什么技术难度<br><img src="/2021/03/14/unity-notes-02/2021-03-21-12-20-55.png"><h3 id="疑问-8"><a href="#疑问-8" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-8"><a href="#资料-8" class="headerlink" title="资料"></a>资料</h3><h3 id="补充-8"><a href="#补充-8" class="headerlink" title="补充"></a>补充</h3></li>
+<li>当两个素材某一个面上的尺寸重合时，会发生 Z-Fighting, 使得视角移动时看到两个场景闪烁<br>解决方法，移动一个素材一个0.001的距离<h2 id="UnityBasics-14-Iron-Bars"><a href="#UnityBasics-14-Iron-Bars" class="headerlink" title="UnityBasics - 14 - Iron Bars"></a>UnityBasics - 14 - Iron Bars</h2><h3 id="笔记-8"><a href="#笔记-8" class="headerlink" title="笔记"></a>笔记</h3>累了不写了，照着截图做，没什么技术难度<br><img src="/2021/03/14/unity-notes-02/2021-03-21-12-20-55.png" alt><h3 id="疑问-8"><a href="#疑问-8" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-8"><a href="#资料-8" class="headerlink" title="资料"></a>资料</h3><h3 id="补充-8"><a href="#补充-8" class="headerlink" title="补充"></a>补充</h3></li>
 </ul>
 
       
@@ -1046,7 +1034,7 @@ password: guest
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-14 13:48:02" itemprop="dateModified" datetime="2021-03-14T13:48:02+08:00">2021-03-14</time>
+                <time title="修改时间：2021-03-20 15:30:43" itemprop="dateModified" datetime="2021-03-20T15:30:43+08:00">2021-03-20</time>
               </span>
 
           
@@ -1062,15 +1050,15 @@ password: guest
       
           <h1 id="unity3D学习"><a href="#unity3D学习" class="headerlink" title="unity3D学习"></a>unity3D学习</h1><p>参考视频 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18x411X7ds"><em>BV18x411X7ds</em></a></p>
 <h2 id="1-UnityBasics-01-Installation"><a href="#1-UnityBasics-01-Installation" class="headerlink" title="1.UnityBasics - 01 - Installation"></a>1.UnityBasics - 01 - Installation</h2><p>2021年3月12日</p>
-<h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><p>Unity 的安装，需要先安装 UnityHub, <a target="_blank" rel="noopener" href="https://unity.cn/releases"><em>这里</em></a> 进入官网下载页面，选择下载 UnityHub。<br><img src="/2021/03/12/unity_notes_01/2021-03-12-19-49-38.png"></p>
-<p>在 UnityHub 中选择 激活新许可证-Unity个人版-我不以专业身份使用Unity。以个人身份使用可以免费使用4天。<br><img src="/2021/03/12/unity_notes_01/2021-03-12-19-51-08.png"></p>
+<h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><p>Unity 的安装，需要先安装 UnityHub, <a target="_blank" rel="noopener" href="https://unity.cn/releases"><em>这里</em></a> 进入官网下载页面，选择下载 UnityHub。<br><img src="/2021/03/12/unity_notes_01/2021-03-12-19-49-38.png" alt></p>
+<p>在 UnityHub 中选择 激活新许可证-Unity个人版-我不以专业身份使用Unity。以个人身份使用可以免费使用4天。<br><img src="/2021/03/12/unity_notes_01/2021-03-12-19-51-08.png" alt></p>
 <p>如果要申请学生认证，需要关联 Github 的账号，并且在 Github 上进行学生认证，认证需要不超过23天的时间审核。之后便可以使用 Unity 个人版。<br><a target="_blank" rel="noopener" href="https://store.unity.com/academic/unity-student"><em>关联github</em></a><br><a target="_blank" rel="noopener" href="https://education.github.com/pack"><em>认证入口</em></a>  </p>
-<p>等待认证，在 <a target="_blank" rel="noopener" href="https://education.github.com/discount_requests/student_application"><em>这里</em></a> 可以看自己的认证进度。等待中的状态是 Pending, 认证成功后，状态是 Approved。<br><img src="/2021/03/12/unity_notes_01/2021-03-13-09-50-11.png"></p>
-<p>接下来，在 Unity 官网的学生认证界面，出现 Congratulations! 就代表认证成功了。<br>  <img src="/2021/03/12/unity_notes_01/2021-03-13-09-54-47.png"></p>
-<p>然后需要复制自己的学生认证序列号到 UnityHub中。<br>打开 Unity 账号下拉框 Settings - My Seats, 选到 Unity Student<br><img src="/2021/03/12/unity_notes_01/2021-03-13-10-00-07.png"><br>然后勾选自己，点击 Assign Seat(s), 就能看到自己的序列号了<br><img src="/2021/03/12/unity_notes_01/2021-03-13-10-03-33.png"></p>
-<p>在 UnityHub 中添加新的许可证<br><img src="/2021/03/12/unity_notes_01/2021-03-13-10-04-22.png"><br>大功告成！<br><img src="/2021/03/12/unity_notes_01/2021-03-13-10-04-42.png"></p>
+<p>等待认证，在 <a target="_blank" rel="noopener" href="https://education.github.com/discount_requests/student_application"><em>这里</em></a> 可以看自己的认证进度。等待中的状态是 Pending, 认证成功后，状态是 Approved。<br><img src="/2021/03/12/unity_notes_01/2021-03-13-09-50-11.png" alt></p>
+<p>接下来，在 Unity 官网的学生认证界面，出现 Congratulations! 就代表认证成功了。<br>  <img src="/2021/03/12/unity_notes_01/2021-03-13-09-54-47.png" alt></p>
+<p>然后需要复制自己的学生认证序列号到 UnityHub中。<br>打开 Unity 账号下拉框 Settings - My Seats, 选到 Unity Student<br><img src="/2021/03/12/unity_notes_01/2021-03-13-10-00-07.png" alt><br>然后勾选自己，点击 Assign Seat(s), 就能看到自己的序列号了<br><img src="/2021/03/12/unity_notes_01/2021-03-13-10-03-33.png" alt></p>
+<p>在 UnityHub 中添加新的许可证<br><img src="/2021/03/12/unity_notes_01/2021-03-13-10-04-22.png" alt><br>大功告成！<br><img src="/2021/03/12/unity_notes_01/2021-03-13-10-04-42.png" alt></p>
 <h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h3><h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><h2 id="2-UnityBasics-02-Windows"><a href="#2-UnityBasics-02-Windows" class="headerlink" title="2.UnityBasics - 02 - Windows"></a>2.UnityBasics - 02 - Windows</h2><p>2021年3月14日</p>
-<h3 id="笔记-1"><a href="#笔记-1" class="headerlink" title="笔记"></a>笔记</h3><h4 id="Unity-editor-layout"><a href="#Unity-editor-layout" class="headerlink" title="Unity editor layout"></a>Unity editor layout</h4><p> <img src="/2021/03/12/unity_notes_01/2021-03-14-10-38-41.png"></p>
+<h3 id="笔记-1"><a href="#笔记-1" class="headerlink" title="笔记"></a>笔记</h3><h4 id="Unity-editor-layout"><a href="#Unity-editor-layout" class="headerlink" title="Unity editor layout"></a>Unity editor layout</h4><p> <img src="/2021/03/12/unity_notes_01/2021-03-14-10-38-41.png" alt></p>
 <ul>
 <li>toolbar: 工作列</li>
 <li>herarchy: 树状列表，表示父子关系（大纲视图）</li>
@@ -1085,8 +1073,8 @@ password: guest
 <li>输出：File - build setting</li>
 <li>hierarchy：create新增</li>
 <li><kbd>Shift</kbd> + <kbd>Space</kbd>：全屏当前窗口</li>
-<li>project 视窗右下角可以拖拽显示大小，最小的时候就是列表形式<br><img src="/2021/03/12/unity_notes_01/2021-03-14-11-01-42.png"><br><img src="/2021/03/12/unity_notes_01/2021-03-14-11-01-59.png"><h3 id="疑问-1"><a href="#疑问-1" class="headerlink" title="疑问"></a>疑问</h3></li>
-<li>创建的材质可以在 inspector 视窗的右下角点击来预览<br><img src="/2021/03/12/unity_notes_01/2021-03-14-11-04-36.png"><br><img src="/2021/03/12/unity_notes_01/2021-03-14-11-04-49.png"><h3 id="资料-1"><a href="#资料-1" class="headerlink" title="资料"></a>资料</h3><h3 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h3></li>
+<li>project 视窗右下角可以拖拽显示大小，最小的时候就是列表形式<br><img src="/2021/03/12/unity_notes_01/2021-03-14-11-01-42.png" alt><br><img src="/2021/03/12/unity_notes_01/2021-03-14-11-01-59.png" alt><h3 id="疑问-1"><a href="#疑问-1" class="headerlink" title="疑问"></a>疑问</h3></li>
+<li>创建的材质可以在 inspector 视窗的右下角点击来预览<br><img src="/2021/03/12/unity_notes_01/2021-03-14-11-04-36.png" alt><br><img src="/2021/03/12/unity_notes_01/2021-03-14-11-04-49.png" alt><h3 id="资料-1"><a href="#资料-1" class="headerlink" title="资料"></a>资料</h3><h3 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h3></li>
 </ul>
 <h2 id="3-UnityBasics-03-04-Move-Yourself-Move-Other-Object"><a href="#3-UnityBasics-03-04-Move-Yourself-Move-Other-Object" class="headerlink" title="3.UnityBasics - 03/04 - Move Yourself/Move Other Object"></a>3.UnityBasics - 03/04 - Move Yourself/Move Other Object</h2><p>2021年3月14日</p>
 <h3 id="笔记-2"><a href="#笔记-2" class="headerlink" title="笔记"></a>笔记</h3><h4 id="1）移动自己的方法"><a href="#1）移动自己的方法" class="headerlink" title="1）移动自己的方法"></a>1）移动自己的方法</h4><ul>
@@ -1103,7 +1091,7 @@ password: guest
 <li>旋转: <kbd>E</kbd></li>
 <li>缩放: <kbd>R</kbd></li>
 </ul>
-<h3 id="疑问-2"><a href="#疑问-2" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-2"><a href="#资料-2" class="headerlink" title="资料"></a>资料</h3><h3 id="补充-2"><a href="#补充-2" class="headerlink" title="补充"></a>补充</h3><p>练习：<br><img src="/2021/03/12/unity_notes_01/2021-03-14-13-40-41.png"></p>
+<h3 id="疑问-2"><a href="#疑问-2" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-2"><a href="#资料-2" class="headerlink" title="资料"></a>资料</h3><h3 id="补充-2"><a href="#补充-2" class="headerlink" title="补充"></a>补充</h3><p>练习：<br><img src="/2021/03/12/unity_notes_01/2021-03-14-13-40-41.png" alt></p>
 
       
     </div>

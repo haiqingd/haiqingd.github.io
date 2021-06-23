@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"haiqingd.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="unity3D学习参考视频 BV18x411X7ds UnityBasics - 05 - Primatives笔记原型（primatives）    Cube 立方体 Sphere 球体 Quad 四边形（4）Plane 平面（&gt;4） Cylinder 圆柱体 Capsule 胶囊疑问资料补充UnityBasics - 06&#x2F;07 - Materials(1)、(2)笔记材质球（mater">
+  <meta name="description" content="unity3D学习参考视频 BV18x411X7ds UnityBasics - 05 - Primatives笔记原型（primatives）    Cube 立方体 Sphere 球体 Quad 四边形（4）Plane 平面（&gt;4） Cylinder 圆柱体 Capsule 胶囊 疑问资料补充UnityBasics - 06&#x2F;07 - Materials(1)、(2)笔记材质球（mate">
 <meta property="og:type" content="article">
 <meta property="og:title" content="unity3D学习 - 02 - 原型、材料、天空、地板、玩家、墙">
 <meta property="og:url" content="https://haiqingd.github.io/2021/03/14/unity-notes-02/index.html">
 <meta property="og:site_name" content="Haiqingd&#39;s Blog">
-<meta property="og:description" content="unity3D学习参考视频 BV18x411X7ds UnityBasics - 05 - Primatives笔记原型（primatives）    Cube 立方体 Sphere 球体 Quad 四边形（4）Plane 平面（&gt;4） Cylinder 圆柱体 Capsule 胶囊疑问资料补充UnityBasics - 06&#x2F;07 - Materials(1)、(2)笔记材质球（mater">
+<meta property="og:description" content="unity3D学习参考视频 BV18x411X7ds UnityBasics - 05 - Primatives笔记原型（primatives）    Cube 立方体 Sphere 球体 Quad 四边形（4）Plane 平面（&gt;4） Cylinder 圆柱体 Capsule 胶囊 疑问资料补充UnityBasics - 06&#x2F;07 - Materials(1)、(2)笔记材质球（mate">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://haiqingd.github.io/2021/03/14/unity-notes-02/2021-03-14-16-45-30.png">
 <meta property="og:image" content="https://haiqingd.github.io/2021/03/14/unity-notes-02/2021-03-14-16-54-51.png">
@@ -221,22 +221,26 @@
 <li>Sphere 球体</li>
 <li>Quad 四边形（4）<br>Plane 平面（&gt;4）</li>
 <li>Cylinder 圆柱体</li>
-<li>Capsule 胶囊<br><img src="/2021/03/14/unity-notes-02/2021-03-14-16-45-30.png"><h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h3><h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-06-07-Materials-1-、-2"><a href="#UnityBasics-06-07-Materials-1-、-2" class="headerlink" title="UnityBasics - 06/07 - Materials(1)、(2)"></a>UnityBasics - 06/07 - Materials(1)、(2)</h2><h3 id="笔记-1"><a href="#笔记-1" class="headerlink" title="笔记"></a>笔记</h3>材质球（material）<br>颜色填充：在资源管理器右键create - Material, 在右侧的监视器中修改 Albedo 色彩值，之后拖动到原型上<br><img src="/2021/03/14/unity-notes-02/2021-03-14-16-54-51.png">  </li>
+<li><p>Capsule 胶囊<br><img src="/2021/03/14/unity-notes-02/2021-03-14-16-45-30.png" alt></p>
+<h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h3><h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-06-07-Materials-1-、-2"><a href="#UnityBasics-06-07-Materials-1-、-2" class="headerlink" title="UnityBasics - 06/07 - Materials(1)、(2)"></a>UnityBasics - 06/07 - Materials(1)、(2)</h2><h3 id="笔记-1"><a href="#笔记-1" class="headerlink" title="笔记"></a>笔记</h3><p>材质球（material）<br>颜色填充：在资源管理器右键create - Material, 在右侧的监视器中修改 Albedo 色彩值，之后拖动到原型上<br><img src="/2021/03/14/unity-notes-02/2021-03-14-16-54-51.png" alt>  </p>
+<p>1. Albedo（反光色）: 可以塞贴图 Texture</p>
+</li>
+<li>Tilling: 重复次数</li>
+<li>Offset: 偏移量</li>
+<li>Metalic：金属度（满档的时候会清楚地看到天空的反光）</li>
+<li>Smoothness: 平滑度</li>
+<li>Normal Map: 法向量贴图<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-11-15.png" alt><h3 id="疑问-1"><a href="#疑问-1" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-1"><a href="#资料-1" class="headerlink" title="资料"></a>资料</h3><a target="_blank" rel="noopener" href="https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fwww.123rf.com%2Fphoto_132810803_red-brick-texture-seamless-pattern-ancient-brick-wall-texture-background-close-up.html&amp;psig=AOvVaw0EZA3cY-pN8K4XWhpPqtxE&amp;ust=1615798623549000&amp;source=images&amp;cd=vfe&amp;ved=0CAIQjRxqFwoTCPiSwIm1r-8CFQAAAAAdAAAAABAI">brick texture</a><br>免费材质网站 <a target="_blank" rel="noopener" href="https://freepbr.com/"><em>freepbr</em></a><h3 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-08-Skybox"><a href="#UnityBasics-08-Skybox" class="headerlink" title="UnityBasics - 08 - Skybox"></a>UnityBasics - 08 - Skybox</h2><h3 id="笔记-2"><a href="#笔记-2" class="headerlink" title="笔记"></a>笔记</h3>skybox：天空盒<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-21-24.png" alt><br>mapping 选为3D<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-26-09.png" alt><br>成果<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-33-54.png" alt><h3 id="疑问-2"><a href="#疑问-2" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-2"><a href="#资料-2" class="headerlink" title="资料"></a>资料</h3><a target="_blank" rel="noopener" href="https://www.google.com/search?q=skybox&amp;tbm=isch"><em>skybox素材</em></a><h3 id="补充-2"><a href="#补充-2" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-09-Skybox-and-Materials"><a href="#UnityBasics-09-Skybox-and-Materials" class="headerlink" title="UnityBasics - 09 - Skybox and Materials"></a>UnityBasics - 09 - Skybox and Materials</h2><h3 id="笔记-3"><a href="#笔记-3" class="headerlink" title="笔记"></a>笔记</h3><ol>
+<li>选择球体 Sphere, 将平滑度 Smoothness 调为 1, 可以观察到球体可以反射天空的材质。但并非实时运算，旁边的正方体 Cube 并没有被反射，如下图。<br><img src="/2021/03/14/unity-notes-02/2021-03-19-14-34-03.png" alt>  </li>
+<li>在 Lighting 中的三个选项：  </li>
 </ol>
-<p>  1. Albedo（反光色）: 可以塞贴图 Texture<br>  2. Tilling: 重复次数<br>  3. Offset: 偏移量<br>  4. Metalic：金属度（满档的时候会清楚地看到天空的反光）<br>  5. Smoothness: 平滑度<br>  6. Normal Map: 法向量贴图<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-11-15.png"></p>
-<h3 id="疑问-1"><a href="#疑问-1" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-1"><a href="#资料-1" class="headerlink" title="资料"></a>资料</h3><p><a target="_blank" rel="noopener" href="https://www.google.com/url?sa=i&url=https://www.123rf.com/photo_132810803_red-brick-texture-seamless-pattern-ancient-brick-wall-texture-background-close-up.html&psig=AOvVaw0EZA3cY-pN8K4XWhpPqtxE&ust=1615798623549000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiSwIm1r-8CFQAAAAAdAAAAABAI">brick texture</a><br>免费材质网站 <a target="_blank" rel="noopener" href="https://freepbr.com/"><em>freepbr</em></a></p>
-<h3 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-08-Skybox"><a href="#UnityBasics-08-Skybox" class="headerlink" title="UnityBasics - 08 - Skybox"></a>UnityBasics - 08 - Skybox</h2><h3 id="笔记-2"><a href="#笔记-2" class="headerlink" title="笔记"></a>笔记</h3><p>skybox：天空盒<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-21-24.png"><br>mapping 选为3D<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-26-09.png"><br>成果<br><img src="/2021/03/14/unity-notes-02/2021-03-15-23-33-54.png"></p>
-<h3 id="疑问-2"><a href="#疑问-2" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-2"><a href="#资料-2" class="headerlink" title="资料"></a>资料</h3><p><a target="_blank" rel="noopener" href="https://www.google.com/search?q=skybox&tbm=isch"><em>skybox素材</em></a></p>
-<h3 id="补充-2"><a href="#补充-2" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-09-Skybox-and-Materials"><a href="#UnityBasics-09-Skybox-and-Materials" class="headerlink" title="UnityBasics - 09 - Skybox and Materials"></a>UnityBasics - 09 - Skybox and Materials</h2><h3 id="笔记-3"><a href="#笔记-3" class="headerlink" title="笔记"></a>笔记</h3><ol>
-<li>选择球体 Sphere, 将平滑度 Smoothness 调为 1, 可以观察到球体可以反射天空的材质。但并非实时运算，旁边的正方体 Cube 并没有被反射，如下图。<br><img src="/2021/03/14/unity-notes-02/2021-03-19-14-34-03.png">  </li>
-<li>在 Lighting 中的三个选项：  <ul>
+<ul>
 <li>Skybox Matetrial：天空球</li>
 <li>Sun Source：Unity 预设的太阳（选择Default Skybox 预览）</li>
 <li>Environment Lighting：环境光（最暗的颜色）<ul>
 <li>Source - Gradient：<ul>
 <li>Skycolor: 反射的天空颜色</li>
 <li>Equator Color: 反射的赤道颜色</li>
-<li>Ground Color: 反射的地面颜色<br><img src="/2021/03/14/unity-notes-02/2021-03-19-15-41-27.png"></li>
+<li>Ground Color: 反射的地面颜色<br><img src="/2021/03/14/unity-notes-02/2021-03-19-15-41-27.png" alt></li>
 </ul>
 </li>
 <li>Source - Skybox:<ul>
@@ -254,42 +258,43 @@
 <li>Bounces：模拟反射的次数<h3 id="疑问-3"><a href="#疑问-3" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-3"><a href="#资料-3" class="headerlink" title="资料"></a>资料</h3><h3 id="补充-3"><a href="#补充-3" class="headerlink" title="补充"></a>补充</h3></li>
 </ul>
 </li>
+<li>新版 2019.03.b09 的lighting setting 在 Window→Rendering→lighting setting 中，不再单独列出lighting</li>
+<li>Smoothness 和 Matallic 的区别<br>环境光底色设置为红色，反射光为 Skybox 情况下的对比：<table>
+<tr>
+ <td><center><img style="border-radius: 0.3125em;
+ box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-16-14-19.png">
+ <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+ display: inline-block;
+ color: #999;
+ padding: 2px;">Smoothness 为 0，Matallic 为 0</div></center></td>
+ <td><center><img style="border-radius: 0.3125em;
+ box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-16-15-35.png">
+ <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+ display: inline-block;
+ color: #999;
+ padding: 2px;">Smoothness 为 0，Matallic 为 1</div></center></td>
+</tr>
+<tr>
+ <td><center><img style="border-radius: 0.3125em;
+ box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-15-53-40.png">
+ <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+ display: inline-block;
+ color: #999;
+ padding: 2px;">Smoothness 为 1，Matallic 为 0</div></center></td>
+ <td><center><img style="border-radius: 0.3125em;
+ box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-15-54-16.png">
+ <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+ display: inline-block;
+ color: #999;
+ padding: 2px;">Smoothness 为 1，Matallic 为 1</div></center></td>
+</tr>
+</table>
+
+
+</li>
 </ul>
 </li>
 </ol>
-<ul>
-<li>新版 2019.03.b09 的lighting setting 在 Window→Rendering→lighting setting 中，不再单独列出lighting</li>
-<li>Smoothness 和 Matallic 的区别<br>环境光底色设置为红色，反射光为 Skybox 情况下的对比：<table>
-  <tr>
-      <td><center><img style="border-radius: 0.3125em;
-      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-16-14-19.png">
-      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-      display: inline-block;
-      color: #999;
-      padding: 2px;">Smoothness 为 0，Matallic 为 0</div></center></td>
-      <td><center><img style="border-radius: 0.3125em;
-      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-16-15-35.png">
-      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-      display: inline-block;
-      color: #999;
-      padding: 2px;">Smoothness 为 0，Matallic 为 1</div></center></td>
-  </tr>
-  <tr>
-      <td><center><img style="border-radius: 0.3125em;
-      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-15-53-40.png">
-      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-      display: inline-block;
-      color: #999;
-      padding: 2px;">Smoothness 为 1，Matallic 为 0</div></center></td>
-      <td><center><img style="border-radius: 0.3125em;
-      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/2021/03/14/unity-notes-02/2021-03-19-15-54-16.png">
-      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-      display: inline-block;
-      color: #999;
-      padding: 2px;">Smoothness 为 1，Matallic 为 1</div></center></td>
-  </tr>
-</table></li>
-</ul>
 <h2 id="UnityBasics-10-Add-Floor"><a href="#UnityBasics-10-Add-Floor" class="headerlink" title="UnityBasics - 10 - Add Floor"></a>UnityBasics - 10 - Add Floor</h2><h3 id="笔记-4"><a href="#笔记-4" class="headerlink" title="笔记"></a>笔记</h3><p>除了 albedo 和 normal, 还需要 ao，height 和roughness 材质<br>对应关系</p>
 <ul>
 <li>albedo : Albedo</li>
@@ -298,40 +303,30 @@
 <li>heignt : Height Map  </li>
 <li>roughness 需要图层操作，具体移步<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18x411X7ds?p=10"><em>此视频</em></a><br>(Height Map 会占用较多资源)</li>
 </ul>
-<p><img src="/2021/03/14/unity-notes-02/2021-03-20-14-45-07.png"></p>
+<p><img src="/2021/03/14/unity-notes-02/2021-03-20-14-45-07.png" alt></p>
 <h3 id="疑问-4"><a href="#疑问-4" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-4"><a href="#资料-4" class="headerlink" title="资料"></a>资料</h3><p><a target="_blank" rel="noopener" href="https://www.textures.com/"><em>textures.com</em></a>（材质网站）</p>
 <h3 id="补充-4"><a href="#补充-4" class="headerlink" title="补充"></a>补充</h3><ul>
-<li><p>一个胶囊体（Capsule）的大小和一个人相似，可以用来预览人在地面上的比例</p>
-<h2 id="UnityBasics-11-Add-Player"><a href="#UnityBasics-11-Add-Player" class="headerlink" title="UnityBasics - 11 - Add Player"></a>UnityBasics - 11 - Add Player</h2><h3 id="笔记-5"><a href="#笔记-5" class="headerlink" title="笔记"></a>笔记</h3></li>
-<li><p>下载Unity-Chan Model,并选择导入</p>
-</li>
-<li><p>打开 Assets - unity-chan! - Unity-chan! Model - Prefabs(预制物件) - for Locomotion</p>
-</li>
-<li><p>将 unitychan 拖到屏幕中</p>
-</li>
-<li><p>点击上方的 Play<br><img src="/2021/03/14/unity-notes-02/2021-03-20-15-10-01.png"></p>
-</li>
+<li>一个胶囊体（Capsule）的大小和一个人相似，可以用来预览人在地面上的比例<h2 id="UnityBasics-11-Add-Player"><a href="#UnityBasics-11-Add-Player" class="headerlink" title="UnityBasics - 11 - Add Player"></a>UnityBasics - 11 - Add Player</h2><h3 id="笔记-5"><a href="#笔记-5" class="headerlink" title="笔记"></a>笔记</h3></li>
+<li>下载Unity-Chan Model,并选择导入</li>
+<li>打开 Assets - unity-chan! - Unity-chan! Model - Prefabs(预制物件) - for Locomotion</li>
+<li>将 unitychan 拖到屏幕中</li>
+<li>点击上方的 Play<br><img src="/2021/03/14/unity-notes-02/2021-03-20-15-10-01.png" alt></li>
 <li><p>将固定视角改为第三人称视角</p>
 <ul>
 <li>调整 Main Camera 到合适的视角</li>
 <li>将 Main Camera 塞进 unitychan 部件中  </li>
 </ul>
-<p><img src="/2021/03/14/unity-notes-02/2021-03-20-15-29-42.png"></p>
+<p><img src="/2021/03/14/unity-notes-02/2021-03-20-15-29-42.png" alt></p>
 <h3 id="疑问-5"><a href="#疑问-5" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-5"><a href="#资料-5" class="headerlink" title="资料"></a>资料</h3></li>
-<li><p>在 Scene 视窗中有选项卡 Asset Store，若没有则按<kbd>Ctrl</kbd> + <kbd>9</kbd> 可以调出<br>在商城中搜索 <code>Unity-Chan</code>，选到一个免费的 Model, 下载并解压</p>
-<h3 id="补充-5"><a href="#补充-5" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-12-Add-Wall"><a href="#UnityBasics-12-Add-Wall" class="headerlink" title="UnityBasics - 12 - Add Wall"></a>UnityBasics - 12 - Add Wall</h2><h3 id="笔记-6"><a href="#笔记-6" class="headerlink" title="笔记"></a>笔记</h3></li>
-<li><p>父子关系：在 Hirearchy(树状列表)中新建 Empty Object<br><img src="/2021/03/14/unity-notes-02/2021-03-21-11-44-33.png"></p>
-</li>
-<li><p>预制物件：将 Hierarchy 中的父子物件 Wall 拖拽到资源管理器中，变成 prefab 文件<br><img src="/2021/03/14/unity-notes-02/2021-03-21-11-47-28.png"></p>
-<h3 id="疑问-6"><a href="#疑问-6" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-6"><a href="#资料-6" class="headerlink" title="资料"></a>资料</h3><p><a target="_blank" rel="noopener" href="https://www.google.com/search?q=crate+maker(effect)&tbm=isch&ved=2ahUKEwihubifsL7vAhVDKqYKHZi-B9UQ2-cCegQIABAA&oq=crate+maker(effect)&gs_lcp=CgNpbWcQAzoECCMQJzoCCAA6BAgAEB46BAgAEBM6CAgAEAgQHhATOggIABAFEB4QEzoGCAAQCBAeUNXVBFiYhgVg54kFaABwAHgAgAGgAogB8ROSAQYwLjEyLjKYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=FKhVYKHfC8PUmAWY_Z6oDQ&bih=754&biw=1536&safe=strict#imgrc=DGcW8dhOaIGrWM"><em>crate texture</em></a></p>
-<h3 id="补充-6"><a href="#补充-6" class="headerlink" title="补充"></a>补充</h3><p>在没有选择冻结XYZ时，视角会出现倾斜<br><img src="/2021/03/14/unity-notes-02/2021-03-20-15-56-41.png">  </p>
-</li>
+<li>在 Scene 视窗中有选项卡 Asset Store，若没有则按<kbd>Ctrl</kbd> + <kbd>9</kbd> 可以调出<br>在商城中搜索 <code>Unity-Chan</code>，选到一个免费的 Model, 下载并解压<h3 id="补充-5"><a href="#补充-5" class="headerlink" title="补充"></a>补充</h3><h2 id="UnityBasics-12-Add-Wall"><a href="#UnityBasics-12-Add-Wall" class="headerlink" title="UnityBasics - 12 - Add Wall"></a>UnityBasics - 12 - Add Wall</h2><h3 id="笔记-6"><a href="#笔记-6" class="headerlink" title="笔记"></a>笔记</h3></li>
+<li>父子关系：在 Hirearchy(树状列表)中新建 Empty Object<br><img src="/2021/03/14/unity-notes-02/2021-03-21-11-44-33.png" alt></li>
+<li>预制物件：将 Hierarchy 中的父子物件 Wall 拖拽到资源管理器中，变成 prefab 文件<br><img src="/2021/03/14/unity-notes-02/2021-03-21-11-47-28.png" alt><h3 id="疑问-6"><a href="#疑问-6" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-6"><a href="#资料-6" class="headerlink" title="资料"></a>资料</h3><a target="_blank" rel="noopener" href="https://www.google.com/search?q=crate+maker(effect"><em>crate texture</em></a>&amp;tbm=isch&amp;ved=2ahUKEwihubifsL7vAhVDKqYKHZi-B9UQ2-cCegQIABAA&amp;oq=crate+maker(effect)&amp;gs_lcp=CgNpbWcQAzoECCMQJzoCCAA6BAgAEB46BAgAEBM6CAgAEAgQHhATOggIABAFEB4QEzoGCAAQCBAeUNXVBFiYhgVg54kFaABwAHgAgAGgAogB8ROSAQYwLjEyLjKYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&amp;sclient=img&amp;ei=FKhVYKHfC8PUmAWY_Z6oDQ&amp;bih=754&amp;biw=1536&amp;safe=strict#imgrc=DGcW8dhOaIGrWM)<h3 id="补充-6"><a href="#补充-6" class="headerlink" title="补充"></a>补充</h3>在没有选择冻结XYZ时，视角会出现倾斜<br><img src="/2021/03/14/unity-notes-02/2021-03-20-15-56-41.png" alt>  </li>
 </ul>
 <h2 id="UnityBasics-13-Use-Block-Creator"><a href="#UnityBasics-13-Use-Block-Creator" class="headerlink" title="UnityBasics - 13 - Use Block Creator"></a>UnityBasics - 13 - Use Block Creator</h2><h3 id="笔记-7"><a href="#笔记-7" class="headerlink" title="笔记"></a>笔记</h3><ul>
 <li>打开 Assets - Building_Blocks_LITE - Prefabs - 1_M_Tall</li>
 <li>制作一个台阶<h3 id="疑问-7"><a href="#疑问-7" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-7"><a href="#资料-7" class="headerlink" title="资料"></a>资料</h3></li>
 <li>在 Scene 视窗中有选项卡 Asset Store，若没有则按<kbd>Ctrl</kbd> + <kbd>9</kbd> 可以调出<br>在商城中搜索 <code>Block Creator LITE</code>，选到一个免费的 Model, 下载并解压<h3 id="补充-7"><a href="#补充-7" class="headerlink" title="补充"></a>补充</h3></li>
-<li>当两个素材某一个面上的尺寸重合时，会发生 Z-Fighting, 使得视角移动时看到两个场景闪烁<br>解决方法，移动一个素材一个0.001的距离<h2 id="UnityBasics-14-Iron-Bars"><a href="#UnityBasics-14-Iron-Bars" class="headerlink" title="UnityBasics - 14 - Iron Bars"></a>UnityBasics - 14 - Iron Bars</h2><h3 id="笔记-8"><a href="#笔记-8" class="headerlink" title="笔记"></a>笔记</h3>累了不写了，照着截图做，没什么技术难度<br><img src="/2021/03/14/unity-notes-02/2021-03-21-12-20-55.png"><h3 id="疑问-8"><a href="#疑问-8" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-8"><a href="#资料-8" class="headerlink" title="资料"></a>资料</h3><h3 id="补充-8"><a href="#补充-8" class="headerlink" title="补充"></a>补充</h3></li>
+<li>当两个素材某一个面上的尺寸重合时，会发生 Z-Fighting, 使得视角移动时看到两个场景闪烁<br>解决方法，移动一个素材一个0.001的距离<h2 id="UnityBasics-14-Iron-Bars"><a href="#UnityBasics-14-Iron-Bars" class="headerlink" title="UnityBasics - 14 - Iron Bars"></a>UnityBasics - 14 - Iron Bars</h2><h3 id="笔记-8"><a href="#笔记-8" class="headerlink" title="笔记"></a>笔记</h3>累了不写了，照着截图做，没什么技术难度<br><img src="/2021/03/14/unity-notes-02/2021-03-21-12-20-55.png" alt><h3 id="疑问-8"><a href="#疑问-8" class="headerlink" title="疑问"></a>疑问</h3><h3 id="资料-8"><a href="#资料-8" class="headerlink" title="资料"></a>资料</h3><h3 id="补充-8"><a href="#补充-8" class="headerlink" title="补充"></a>补充</h3></li>
 </ul>
 
     </div>
